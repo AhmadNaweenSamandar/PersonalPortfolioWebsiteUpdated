@@ -20,30 +20,56 @@ if(!apiKey){
    process.exit(1);//stopping the server
 }
 
+
+// we will use map data structure for chat history
+// gemini doesn't allow to restore individual messages, we need to retrive them all once
+// so we create an array for previous messages
+// mapping conversationId -> array of messages
+// conv1 -> [1,2,3,5]
+const conversationStore = new Map<string, any[]>()
+
 // Initialize the API client with key
 const genAI = new GoogleGenAI({apiKey: apiKey});
 
 //endpoint for receiving data from clients
 app.post('/api/chat', async (req: Request, res: Response): Promise<any> => {
     try {
-        const { prompt } = req.body;
+        const { prompt, conversationId } = req.body;
 
-        if (!prompt) {
-            return res.status(400).json({ error: "Prompt is required" });
+        if (!prompt || !conversationId) {
+            return res.status(400).json({ error: "Prompt is required and conversationID are required" });
         }
 
-        
-        
+        // retrieve the existing history for this specific ID
+        // if it doesn't exist yet, create an empty array
+        let history = conversationStore.get(conversationId) || [];
+
+        //add user's new message to the history
+        history.push({
+         role: "user",
+         parts: [{text: prompt}]
+        })        
         // 4. Await the response and extract text using the helper method
         // 3. Call generateContent on the model instance
         const response = await genAI.models.generateContent({
          model: "gemini-3-flash-preview",
-         contents: prompt,
+         //send the full history to gemini
+         contents: history //we send everything: old messages + new prompt
         })
 
         //accessing the text
         const text = response.text;
 
+        // Add Gemini's answer to the history
+        history.push({
+         role: "model",
+         parts: [{text: text}]
+        })
+
+        //save the updated history back to the Map
+        conversationStore.set(conversationId, history);
+
+        //send only latest answer to the frontend
         res.json({ message: text });
 
     } catch (error) {
