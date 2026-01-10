@@ -1,0 +1,51 @@
+// src/services/chat.service.ts
+import { GoogleGenAI } from "@google/genai";
+import { ChatRepository } from "../repositories/chat.repository";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+export class ChatService {
+  private ai: GoogleGenAI;
+  private chatRepo: ChatRepository;
+
+  constructor() {
+    // Initialize API Client
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) throw new Error("GEMINI_API_KEY is not set");
+    
+    this.ai = new GoogleGenAI({ apiKey });
+    this.chatRepo = new ChatRepository();
+  }
+
+  async processMessage(conversationId: string, userMessage: string) {
+    // 1. Get previous history from Repository
+    const history = await this.chatRepo.getHistory(conversationId);
+
+    // 2. Add user's new message
+    history.push({
+      role: "user",
+      parts: [{ text: userMessage }]
+    });
+
+    // 3. Call Gemini API
+    const response = await this.ai.models.generateContent({
+      model: "gemini-3-flash-preview",
+      contents: history,
+    });
+
+    const aiText = response.text;
+    if (!aiText) throw new Error("AI response was empty or blocked");
+
+    // 4. Add AI's answer to history
+    history.push({
+      role: "model",
+      parts: [{ text: aiText }]
+    });
+
+    // 5. Save updated history back to Repository
+    await this.chatRepo.saveHistory(conversationId, history);
+
+    return aiText;
+  }
+}

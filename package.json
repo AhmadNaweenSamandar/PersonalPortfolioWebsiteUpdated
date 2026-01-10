@@ -10,11 +10,13 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@google/genai": "^1.35.0",
     "@types/lint-staged": "^13.3.0",
     "express": "^5.2.1",
     "prettier": "^3.7.4",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "zod": "^4.3.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
