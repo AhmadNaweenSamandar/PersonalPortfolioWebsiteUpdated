@@ -6,6 +6,7 @@ import { RESUME_DATA } from "../constants/portfolioData";
 
 dotenv.config();
 
+
 export class ChatService {
   private ai: GoogleGenAI;
   private chatRepo: ChatRepository;
