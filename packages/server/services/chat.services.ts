@@ -2,6 +2,7 @@
 import { GoogleGenAI } from "@google/genai";
 import { ChatRepository } from "../repositories/chat.repository";
 import dotenv from 'dotenv';
+import { RESUME_DATA } from "../constants/portfolioData";
 
 dotenv.config();
 
@@ -31,6 +32,12 @@ export class ChatService {
     // 3. Call Gemini API
     const response = await this.ai.models.generateContent({
       model: "gemini-3-flash-preview",
+      // 1. AI Persona and Knowledge about Ahmad
+      config: {
+        systemInstruction: {
+            parts: [{ text: RESUME_DATA }]
+        }
+      },
       contents: history,
     });
 
