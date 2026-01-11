@@ -6,6 +6,7 @@ export function HeroSection() {
    const [showButtons, setShowButtons] = useState(false);
    const [currentKeyword, setCurrentKeyword] = useState(0);
 
+   //these three keywords will constantly appear under the name one by one showing three different information regarding me
    const keywords = [
       'Student at University of Ottawa',
       'Software Engineer',
@@ -22,6 +23,7 @@ export function HeroSection() {
    return (
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0F0F0F]">
          {/* Animated Background Elements */}
+         {/* Diamond ease in and out animation */}
          <motion.div
             className="absolute top-10 sm:top-20 right-10 sm:right-20"
             animate={{
@@ -37,6 +39,7 @@ export function HeroSection() {
             <Diamond className="w-8 h-8 sm:w-12 lg:w-16 text-[#C9A24D] opacity-20" />
          </motion.div>
 
+         {/* {circle moving animation} */}
          <motion.div
             className="absolute top-1/4 left-10 sm:left-20"
             animate={{
@@ -53,6 +56,7 @@ export function HeroSection() {
          </motion.div>
 
          {/* Airplane Path Animation */}
+         {/* {this has not been consistent with its correct appearence, potentially need a look back} */}
          {!showButtons && (
             <motion.div
                className="absolute hidden lg:block"
@@ -150,7 +154,7 @@ export function HeroSection() {
                   </motion.div>
                </AnimatePresence>
             </div>
-
+            {/* {when a user click on the learn more it will pop up three new button for social media} */}
             <AnimatePresence mode="wait">
                {!showButtons ? (
                   <motion.button
@@ -173,7 +177,7 @@ export function HeroSection() {
                      className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
                   >
                      <motion.a
-                        href="https://github.com"
+                        href="https://github.com/AhmadNaweenSamandar"
                         target="_blank"
                         rel="noopener noreferrer"
                         initial={{ x: -50, opacity: 0 }}
@@ -200,7 +204,7 @@ export function HeroSection() {
                      </motion.a>
 
                      <motion.a
-                        href="https://linkedin.com"
+                        href="https://www.linkedin.com/in/ahmad-naween-samandar-17aaba275/"
                         target="_blank"
                         rel="noopener noreferrer"
                         initial={{ x: 50, opacity: 0 }}
