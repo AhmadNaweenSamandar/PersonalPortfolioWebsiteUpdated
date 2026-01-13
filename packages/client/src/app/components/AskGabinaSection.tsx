@@ -4,10 +4,13 @@ import { Bot, Send, X, Sparkles } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid'; // UUID generator imported
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { TypewriterMessage } from './TypewriterMessage';
 
 interface Message {
    role: 'user' | 'assistant';
    content: string;
+   id?: string; // Optional: helps with keys
+   alreadyAnimated?: boolean; // New flag to check whether the message is written character by character (LLM text generation effect) by Typewritter
 }
 
 export function AskGabinaSection() {
@@ -38,8 +41,14 @@ export function AskGabinaSection() {
 
       const userText = input;
       setInput('');
-      setMessages((prev) => [...prev, { role: 'user', content: userText }]);
       setIsLoading(true);
+      // Add user message immediately
+      setMessages((prev) => [
+         // Mark all OLD messages as already animated
+         ...prev.map((m) => ({ ...m, alreadyAnimated: true })),
+         // Add NEW user message
+         { role: 'user', content: userText, alreadyAnimated: true },
+      ]);
 
       try {
          // 2. SEND REQUEST TO YOUR CONTROLLER
@@ -58,17 +67,26 @@ export function AskGabinaSection() {
             throw new Error(data.error || 'Failed to fetch');
          }
 
+         // 3. Update State with AI Response
          setMessages((prev) => [
-            ...prev,
-            { role: 'assistant', content: data.message },
+            // Keep everything marked as animated
+            ...prev.map((m) => ({ ...m, alreadyAnimated: true })),
+
+            // Add AI response (alreadyAnimated: FALSE triggers the typewriter)
+            {
+               role: 'assistant',
+               content: data.message,
+               alreadyAnimated: false,
+            },
          ]);
       } catch (error) {
-         console.error('Error:', error);
+         console.error('Chat Error:', error);
          setMessages((prev) => [
             ...prev,
             {
                role: 'assistant',
-               content: '⚠️ My brain is offline right now. Try again later!',
+               content: 'I am sleeping now. Try again later!',
+               alreadyAnimated: true, // Don't animate errors
             },
          ]);
       } finally {
@@ -268,6 +286,18 @@ export function AskGabinaSection() {
                                        : 'bg-[#0F0F0F] text-[#D1D1D1] border border-[#C9A24D]/30'
                                  }`}
                               >
+                                 {message.role === 'assistant' ? (
+                                    <TypewriterMessage
+                                       content={message.content}
+                                       // If it's from history (true) -> Don't animate
+                                       // If it's brand new (false) -> Animate
+                                       isNew={!message.alreadyAnimated}
+                                    />
+                                 ) : (
+                                    // User messages render instantly
+                                    message.content
+                                 )}
+
                                  {/* REPLACED {message.content} WITH REACT MARKDOWN COMPONENT to render the bold, bullet points, list */}
                                  <ReactMarkdown
                                     remarkPlugins={[remarkGfm]}
@@ -336,7 +366,7 @@ export function AskGabinaSection() {
                                        ),
                                     }}
                                  >
-                                    {message.content}
+                                    {/* {message.content} */}
                                  </ReactMarkdown>
                               </div>
                            </motion.div>
