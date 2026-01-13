@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Bot, Send, X, Sparkles } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid'; // UUID generator imported
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Message {
    role: 'user' | 'assistant';
@@ -266,7 +268,76 @@ export function AskGabinaSection() {
                                        : 'bg-[#0F0F0F] text-[#D1D1D1] border border-[#C9A24D]/30'
                                  }`}
                               >
-                                 {message.content}
+                                 {/* REPLACED {message.content} WITH REACT MARKDOWN COMPONENT to render the bold, bullet points, list */}
+                                 <ReactMarkdown
+                                    remarkPlugins={[remarkGfm]}
+                                    components={{
+                                       // Customize how different elements look to match your theme
+
+                                       // Bold text
+                                       strong: ({ node, ...props }) => (
+                                          <span
+                                             className="font-bold text-white"
+                                             {...props}
+                                          />
+                                       ),
+
+                                       // Links
+                                       a: ({ node, ...props }) => (
+                                          <a
+                                             className="text-[#C9A24D] underline hover:text-[#D1D1D1]"
+                                             target="_blank"
+                                             rel="noopener noreferrer"
+                                             {...props}
+                                          />
+                                       ),
+
+                                       // Bullet Lists
+                                       ul: ({ node, ...props }) => (
+                                          <ul
+                                             className="list-disc pl-4 mb-2 space-y-1"
+                                             {...props}
+                                          />
+                                       ),
+
+                                       // Numbered Lists
+                                       ol: ({ node, ...props }) => (
+                                          <ol
+                                             className="list-decimal pl-4 mb-2 space-y-1"
+                                             {...props}
+                                          />
+                                       ),
+
+                                       // List Items
+                                       li: ({ node, ...props }) => (
+                                          <li className="pl-1" {...props} />
+                                       ),
+
+                                       // Headings (h1, h2, h3)
+                                       h1: ({ node, ...props }) => (
+                                          <h1
+                                             className="text-xl font-bold mb-2 text-[#C9A24D]"
+                                             {...props}
+                                          />
+                                       ),
+                                       h2: ({ node, ...props }) => (
+                                          <h2
+                                             className="text-lg font-bold mb-2 text-[#C9A24D]"
+                                             {...props}
+                                          />
+                                       ),
+
+                                       // Paragraphs (adds spacing between blocks of text)
+                                       p: ({ node, ...props }) => (
+                                          <p
+                                             className="mb-2 last:mb-0 leading-relaxed"
+                                             {...props}
+                                          />
+                                       ),
+                                    }}
+                                 >
+                                    {message.content}
+                                 </ReactMarkdown>
                               </div>
                            </motion.div>
                         ))}
