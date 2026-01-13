@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Bot, Send, X, Sparkles } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid'; // UUID generator imported
@@ -20,6 +20,18 @@ export function AskGabinaSection() {
    const [highlightName, setHighlightName] = useState(false);
    const [isLoading, setIsLoading] = useState(false);
    const [conversationId, setConversationId] = useState('');
+   // 2. Create a reference for the bottom of the chat
+   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+   // 3. The Scroll Function
+   const scrollToBottom = () => {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+   };
+
+   // 4. Trigger scroll whenever messages change or loading starts/stops
+   useEffect(() => {
+      scrollToBottom();
+   }, [messages, isLoading, isOpen]); // Added isOpen so it scrolls when you first open it
 
    // 1. GENERATE OR RETRIEVE UUID ON LOAD
    useEffect(() => {
@@ -279,6 +291,7 @@ export function AskGabinaSection() {
                               animate={{ opacity: 1, y: 0 }}
                               className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                            >
+                              <div ref={messagesEndRef} />
                               <div
                                  className={`max-w-[85%] sm:max-w-[70%] p-4 rounded-2xl text-sm sm:text-base ${
                                     message.role === 'user'
