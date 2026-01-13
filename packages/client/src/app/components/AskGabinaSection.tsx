@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Bot, Send, X, Sparkles } from 'lucide-react';
+import { v4 as uuidv4 } from 'uuid'; // UUID generator imported
 
 interface Message {
    role: 'user' | 'assistant';
@@ -12,6 +13,66 @@ export function AskGabinaSection() {
    const [messages, setMessages] = useState<Message[]>([]);
    const [input, setInput] = useState('');
    const [highlightName, setHighlightName] = useState(false);
+   const [isLoading, setIsLoading] = useState(false);
+   const [conversationId, setConversationId] = useState('');
+
+   // 1. GENERATE OR RETRIEVE UUID ON LOAD
+   useEffect(() => {
+      // Check if user already has a chat ID in their browser
+      let storedId = localStorage.getItem('chat_conversation_id');
+
+      if (!storedId) {
+         // If not, generate a new random UUID
+         storedId = uuidv4();
+         // Save it so we remember them next time
+         localStorage.setItem('chat_conversation_id', storedId);
+      }
+
+      setConversationId(storedId);
+   }, []);
+
+   const handleSend = async () => {
+      if (!input.trim() || isLoading) return;
+
+      const userText = input;
+      setInput('');
+      setMessages((prev) => [...prev, { role: 'user', content: userText }]);
+      setIsLoading(true);
+
+      try {
+         // 2. SEND REQUEST TO YOUR CONTROLLER
+         const response = await fetch('http://localhost:5000/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+               prompt: userText,
+               conversationId: conversationId, // Send the UUID we generated
+            }),
+         });
+
+         const data = await response.json();
+
+         if (!response.ok) {
+            throw new Error(data.error || 'Failed to fetch');
+         }
+
+         setMessages((prev) => [
+            ...prev,
+            { role: 'assistant', content: data.message },
+         ]);
+      } catch (error) {
+         console.error('Error:', error);
+         setMessages((prev) => [
+            ...prev,
+            {
+               role: 'assistant',
+               content: '⚠️ My brain is offline right now. Try again later!',
+            },
+         ]);
+      } finally {
+         setIsLoading(false);
+      }
+   };
 
    const suggestedQuestions = [
       "What are Ahmads' technical skills?",
@@ -24,24 +85,6 @@ export function AskGabinaSection() {
       setIsOpen(true);
       setHighlightName(true);
       setTimeout(() => setHighlightName(false), 2000);
-   };
-
-   const handleSend = () => {
-      if (!input.trim()) return;
-
-      const userMessage: Message = { role: 'user', content: input };
-      setMessages([...messages, userMessage]);
-
-      // Mock AI response
-      setTimeout(() => {
-         const response: Message = {
-            role: 'assistant',
-            content: `This is a mock response to: "${input}". In a real implementation, this would connect to an AI service to answer questions about the me.`,
-         };
-         setMessages((prev) => [...prev, response]);
-      }, 1000);
-
-      setInput('');
    };
 
    const handleQuestionClick = (question: string) => {
