@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm';
 
 interface TypewriterMessageProps {
    content: string;
-   isNew: boolean; // Only animate if it's a fresh message
+   isNew: boolean;
 }
 
 export const TypewriterMessage = ({
@@ -16,34 +16,40 @@ export const TypewriterMessage = ({
    const indexRef = useRef(0);
 
    useEffect(() => {
-      // If it's not a new message (e.g., from history), show immediately
+      // 1. If it's an old message, show full content immediately
       if (!isNew) {
          setDisplayedText(content);
+         setIsTyping(false);
          return;
       }
 
+      // 2. If it's new, prepare for typing
       setIsTyping(true);
-      setDisplayedText(''); // Start empty
+      setDisplayedText('');
       indexRef.current = 0;
 
+      // 3. The Typing Loop
       const intervalId = setInterval(() => {
-         // Check if we reached the end
-         if (indexRef.current < content.length) {
-            // Add one character at a time
-            setDisplayedText((prev) => prev + content.charAt(indexRef.current));
-            indexRef.current += 1;
+         // Increment index first
+         indexRef.current++;
+
+         // Safely slice the string from 0 to current index
+         // This prevents "missing first char" or "undefined" errors
+         if (indexRef.current <= content.length) {
+            setDisplayedText(content.slice(0, indexRef.current));
          } else {
-            // Stop typing
+            // Stop when we reach the end
             clearInterval(intervalId);
             setIsTyping(false);
          }
-      }, 15); // <-- SPEED: Lower number = Faster typing (try 10-20ms)
+      }, 15); // Speed: 15ms
 
+      // Cleanup interval on unmount
       return () => clearInterval(intervalId);
    }, [content, isNew]);
 
    return (
-      <div className="markdown-container">
+      <div className="markdown-container text-left">
          <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
@@ -52,8 +58,9 @@ export const TypewriterMessage = ({
                ),
                a: ({ node, ...props }) => (
                   <a
-                     className="text-[#C9A24D] underline"
+                     className="text-[#C9A24D] underline hover:text-[#D1D1D1]"
                      target="_blank"
+                     rel="noopener noreferrer"
                      {...props}
                   />
                ),
@@ -77,19 +84,16 @@ export const TypewriterMessage = ({
                   />
                ),
                p: ({ node, ...props }) => (
-                  <p
-                     className="mb-2 last:mb-0 leading-relaxed inline"
-                     {...props}
-                  />
-               ),
+                  <p className="mb-2 last:mb-0 leading-relaxed" {...props} />
+               ), // Removed 'inline' to fix layout
             }}
          >
             {displayedText}
          </ReactMarkdown>
 
-         {/* The Blinking Cursor */}
+         {/* Blinking Cursor */}
          {isTyping && (
-            <span className="inline-block w-2 h-4 ml-1 bg-[#C9A24D] animate-pulse align-middle" />
+            <span className="inline-block w-1.5 h-4 ml-0.5 bg-[#C9A24D] animate-pulse align-middle" />
          )}
       </div>
    );
