@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { AskGabinaSection } from './app/components/AskGabinaSection';
 
 function App() {
    // useState creates a piece of memory for this component.
@@ -28,7 +29,13 @@ function App() {
    // The component renders this HTML.
    // Initially, {message} is empty. Once the fetch finishes and state updates,
    // React automatically re-runs this part and displays "Hello World!".
-   return <p>{message}</p>;
+   return (
+      <div className="min-h-screen bg-[#0F0F0F]">
+         <main>
+            <AskGabinaSection />
+         </main>
+      </div>
+   );
 }
 
 export default App;

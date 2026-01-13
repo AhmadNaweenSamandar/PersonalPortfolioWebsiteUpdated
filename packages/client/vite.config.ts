@@ -12,7 +12,7 @@ export default defineConfig({
          // When a match is found, forward that request to this target (your backend).
          // Note: Use 'http' if your backend is not using SSL (https).
          // Most local Node servers run on 'http'.
-         '/api': 'http://localhost:5000',
+         '/api/chat': 'http://localhost:5000',
       },
    },
 });
