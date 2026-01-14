@@ -288,7 +288,21 @@ export function AskGabinaSection() {
                      )}
 
                      {/* Messages */}
-                     <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 no-scrollbar">
+                     {/* {the hide property for scrol bar is implemented at inline css tailwind code} */}
+                     <div
+                        className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 scrollbar-hide"
+                        style={{
+                           scrollbarWidth: 'none' /* Firefox */,
+                           msOverflowStyle: 'none' /* IE and Edge */,
+                        }}
+                     >
+                        {' '}
+                        {/* This internal style tag hides it for Chrome/Safari/Opera */}
+                        <style>{`
+                              div::-webkit-scrollbar {
+                                 display: none;
+                              }
+                           `}</style>
                         {messages.map((message, idx) => (
                            <motion.div
                               key={idx}
