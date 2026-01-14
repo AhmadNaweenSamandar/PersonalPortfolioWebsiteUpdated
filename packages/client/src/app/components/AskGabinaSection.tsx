@@ -22,6 +22,8 @@ export function AskGabinaSection() {
    const [conversationId, setConversationId] = useState('');
    // 2. Create a reference for the bottom of the chat
    const messagesEndRef = useRef<HTMLDivElement>(null);
+   //reference to parent div to solve the scroll problem
+   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
    // 3. The Scroll Function
    const scrollToBottomSmooth = () => {
@@ -29,8 +31,17 @@ export function AskGabinaSection() {
    };
 
    // Use this for typing (Instant/Auto) - keeps up with the speed
-   const scrollToBottomInstant = () => {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
+   // const scrollToBottomInstant = () => {
+   //    messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
+   // };
+   // scrollToBottomInstant is replace with following function
+   // it calculates the exact pixel height and force the window to jump their immediately
+   const forceScrollToBottom = () => {
+      if (scrollContainerRef.current) {
+         const { scrollHeight, clientHeight } = scrollContainerRef.current;
+         // Sets the scroll position to the maximum possible height
+         scrollContainerRef.current.scrollTop = scrollHeight - clientHeight;
+      }
    };
 
    // 4. Trigger scroll whenever messages change or loading starts/stops
@@ -290,6 +301,7 @@ export function AskGabinaSection() {
                      {/* Messages */}
                      {/* {the hide property for scrol bar is implemented at inline css tailwind code} */}
                      <div
+                        ref={scrollContainerRef} // <--- NEW REF to scroll container for scrolling bug fix
                         className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 scrollbar-hide"
                         style={{
                            scrollbarWidth: 'none' /* Firefox */,
@@ -325,7 +337,7 @@ export function AskGabinaSection() {
                                        // If it's brand new (false) -> Animate
                                        isNew={!message.alreadyAnimated}
                                        //passed instant scrolling function here
-                                       onTyping={scrollToBottomInstant}
+                                       onTyping={forceScrollToBottom}
                                     />
                                  ) : (
                                     // User messages render instantly

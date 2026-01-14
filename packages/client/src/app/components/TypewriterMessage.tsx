@@ -39,6 +39,16 @@ export const TypewriterMessage = ({
          // This prevents "missing first char" or "undefined" errors
          if (indexRef.current <= content.length) {
             setDisplayedText(content.slice(0, indexRef.current));
+            // SCROLL BUG Fix: Wrap in setTimeout to ensure DOM updates first
+
+            // FIX: Another slight change to onTyping to bring some delay ensuring the DOM has grown BEFORE we scroll
+            // if (onTyping) {
+            //    setTimeout(() => onTyping(), 0); -> requestAnimationFrame(() => onTyping());
+            // }
+
+            if (onTyping) {
+               requestAnimationFrame(() => onTyping());
+            }
          } else {
             // Stop when we reach the end
             clearInterval(intervalId);
@@ -56,6 +66,10 @@ export const TypewriterMessage = ({
          onTyping(); // Scroll down on every new character
       }
    }, [displayedText, onTyping, isTyping]);
+
+   // CURSOR Bug FIX: Append the cursor character directly to the text string
+   // We use "▍" (a unicode block) instead of a <span>
+   const textWithCursor = isTyping ? displayedText + '▍' : displayedText;
 
    return (
       <div className="markdown-container text-left">
