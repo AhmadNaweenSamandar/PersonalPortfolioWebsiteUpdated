@@ -22,15 +22,31 @@ export function AskGabinaSection() {
    const [conversationId, setConversationId] = useState('');
    // 2. Create a reference for the bottom of the chat
    const messagesEndRef = useRef<HTMLDivElement>(null);
+   //reference to parent div to solve the scroll problem
+   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
    // 3. The Scroll Function
-   const scrollToBottom = () => {
+   const scrollToBottomSmooth = () => {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+   };
+
+   // Use this for typing (Instant/Auto) - keeps up with the speed
+   // const scrollToBottomInstant = () => {
+   //    messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
+   // };
+   // scrollToBottomInstant is replace with following function
+   // it calculates the exact pixel height and force the window to jump their immediately
+   const forceScrollToBottom = () => {
+      if (scrollContainerRef.current) {
+         const { scrollHeight, clientHeight } = scrollContainerRef.current;
+         // Sets the scroll position to the maximum possible height
+         scrollContainerRef.current.scrollTop = scrollHeight - clientHeight;
+      }
    };
 
    // 4. Trigger scroll whenever messages change or loading starts/stops
    useEffect(() => {
-      scrollToBottom();
+      scrollToBottomSmooth();
    }, [messages, isLoading, isOpen]); // Added isOpen so it scrolls when you first open it
 
    // 1. GENERATE OR RETRIEVE UUID ON LOAD
@@ -107,8 +123,8 @@ export function AskGabinaSection() {
    };
 
    const suggestedQuestions = [
-      "What are Ahmads' technical skills?",
-      "Tell me about Ahmads' experience",
+      'What are Ahmad technical skills?',
+      'Tell me about Ahmad experience',
       'What projects has Ahmad worked on?',
       'What makes Ahmad a great team member?',
    ];
@@ -283,7 +299,22 @@ export function AskGabinaSection() {
                      )}
 
                      {/* Messages */}
-                     <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
+                     {/* {the hide property for scrol bar is implemented at inline css tailwind code} */}
+                     <div
+                        ref={scrollContainerRef} // <--- NEW REF to scroll container for scrolling bug fix
+                        className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 scrollbar-hide"
+                        style={{
+                           scrollbarWidth: 'none' /* Firefox */,
+                           msOverflowStyle: 'none' /* IE and Edge */,
+                        }}
+                     >
+                        {' '}
+                        {/* This internal style tag hides it for Chrome/Safari/Opera */}
+                        <style>{`
+                              div::-webkit-scrollbar {
+                                 display: none;
+                              }
+                           `}</style>
                         {messages.map((message, idx) => (
                            <motion.div
                               key={idx}
@@ -291,7 +322,6 @@ export function AskGabinaSection() {
                               animate={{ opacity: 1, y: 0 }}
                               className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                            >
-                              <div ref={messagesEndRef} />
                               <div
                                  className={`max-w-[85%] sm:max-w-[70%] p-4 rounded-2xl text-sm sm:text-base ${
                                     message.role === 'user'
@@ -299,12 +329,15 @@ export function AskGabinaSection() {
                                        : 'bg-[#0F0F0F] text-[#D1D1D1] border border-[#C9A24D]/30'
                                  }`}
                               >
+                                 <div ref={messagesEndRef} />
                                  {message.role === 'assistant' ? (
                                     <TypewriterMessage
                                        content={message.content}
                                        // If it's from history (true) -> Don't animate
                                        // If it's brand new (false) -> Animate
                                        isNew={!message.alreadyAnimated}
+                                       //passed instant scrolling function here
+                                       onTyping={forceScrollToBottom}
                                     />
                                  ) : (
                                     // User messages render instantly
