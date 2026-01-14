@@ -1,3 +1,17 @@
+// this hides the CHAT scroll wheel
+// this should be used in the message div at line 300
+<style>{`
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+`}</style>;
+
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Bot, Send, X, Sparkles } from 'lucide-react';
@@ -24,13 +38,18 @@ export function AskGabinaSection() {
    const messagesEndRef = useRef<HTMLDivElement>(null);
 
    // 3. The Scroll Function
-   const scrollToBottom = () => {
+   const scrollToBottomSmooth = () => {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+   };
+
+   // Use this for typing (Instant/Auto) - keeps up with the speed
+   const scrollToBottomInstant = () => {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
    };
 
    // 4. Trigger scroll whenever messages change or loading starts/stops
    useEffect(() => {
-      scrollToBottom();
+      scrollToBottomSmooth();
    }, [messages, isLoading, isOpen]); // Added isOpen so it scrolls when you first open it
 
    // 1. GENERATE OR RETRIEVE UUID ON LOAD
@@ -107,8 +126,8 @@ export function AskGabinaSection() {
    };
 
    const suggestedQuestions = [
-      "What are Ahmads' technical skills?",
-      "Tell me about Ahmads' experience",
+      'What are Ahmad technical skills?',
+      'Tell me about Ahmad experience',
       'What projects has Ahmad worked on?',
       'What makes Ahmad a great team member?',
    ];
@@ -283,7 +302,7 @@ export function AskGabinaSection() {
                      )}
 
                      {/* Messages */}
-                     <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
+                     <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 no-scrollbar">
                         {messages.map((message, idx) => (
                            <motion.div
                               key={idx}
@@ -291,7 +310,6 @@ export function AskGabinaSection() {
                               animate={{ opacity: 1, y: 0 }}
                               className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                            >
-                              <div ref={messagesEndRef} />
                               <div
                                  className={`max-w-[85%] sm:max-w-[70%] p-4 rounded-2xl text-sm sm:text-base ${
                                     message.role === 'user'
@@ -299,12 +317,15 @@ export function AskGabinaSection() {
                                        : 'bg-[#0F0F0F] text-[#D1D1D1] border border-[#C9A24D]/30'
                                  }`}
                               >
+                                 <div ref={messagesEndRef} />
                                  {message.role === 'assistant' ? (
                                     <TypewriterMessage
                                        content={message.content}
                                        // If it's from history (true) -> Don't animate
                                        // If it's brand new (false) -> Animate
                                        isNew={!message.alreadyAnimated}
+                                       //passed instant scrolling function here
+                                       onTyping={scrollToBottomInstant}
                                     />
                                  ) : (
                                     // User messages render instantly

@@ -5,11 +5,13 @@ import remarkGfm from 'remark-gfm';
 interface TypewriterMessageProps {
    content: string;
    isNew: boolean;
+   onTyping?: () => void; // <--- NEW PROP: Function to call when typing to scroll to new message generation
 }
 
 export const TypewriterMessage = ({
    content,
    isNew,
+   onTyping,
 }: TypewriterMessageProps) => {
    const [displayedText, setDisplayedText] = useState('');
    const [isTyping, setIsTyping] = useState(false);
@@ -47,6 +49,13 @@ export const TypewriterMessage = ({
       // Cleanup interval on unmount
       return () => clearInterval(intervalId);
    }, [content, isNew]);
+
+   // 2. NEW: Trigger scroll whenever text changes
+   useEffect(() => {
+      if (onTyping && isTyping) {
+         onTyping(); // Scroll down on every new character
+      }
+   }, [displayedText, onTyping, isTyping]);
 
    return (
       <div className="markdown-container text-left">
