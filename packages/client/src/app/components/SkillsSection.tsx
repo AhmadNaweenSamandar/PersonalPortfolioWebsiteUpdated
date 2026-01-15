@@ -29,6 +29,12 @@ export function SkillsSection() {
                                 transition={{ delay: idx * 0.1 }}
                                 className="flex-shrink-0 w-64 sm:w-72 lg:w-auto"
                                >
+                                {/* Category Header */}
+                                <div className="bg-[#1A1A1A] border border-[#C9A24D]/30 rounded-2xl p-4 sm:p-6 text-center mb-4">
+                                    <Icon className="w-8 h-8 mx-auto mb-3 text-[#C9A24D]" />
+                                    <h3 className="font-bold text-lg text-[#D1D1D1]">{category.title}</h3>
+                                </div>
+
 
     )
 }
