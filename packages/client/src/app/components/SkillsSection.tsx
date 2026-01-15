@@ -3,6 +3,7 @@ import { Code, Server, Database, GitBranch, Brain } from 'lucide-react';
 
 export function SkillsSection() {
    const skillCategories = [
+      //   Frontend skills
       {
          title: 'Frontend',
          icon: Code,
@@ -30,6 +31,29 @@ export function SkillsSection() {
             {
                name: 'NPM',
                logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg',
+            },
+         ],
+      },
+      //   Backend skills
+      {
+         title: 'Backend',
+         icon: Server,
+         skills: [
+            {
+               name: 'Java',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
+            },
+            {
+               name: 'Python',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+            },
+            {
+               name: 'Node.js',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+            },
+            {
+               name: 'Express',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
             },
          ],
       },
