@@ -113,7 +113,8 @@ export function AskGabinaSection() {
             ...prev,
             {
                role: 'assistant',
-               content: 'I am sleeping now. Try again later!',
+               content:
+                  'Dear user, I am running with limits. I can help you with five question per minute and max 20 in a day. If you reach your daily limit please come back another day!',
                alreadyAnimated: true, // Don't animate errors
             },
          ]);
