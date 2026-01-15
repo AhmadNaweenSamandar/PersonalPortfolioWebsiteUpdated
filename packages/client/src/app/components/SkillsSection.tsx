@@ -2,6 +2,38 @@ import { motion } from 'motion/react';
 import { Code, Server, Database, GitBranch, Brain } from 'lucide-react';
 
 export function SkillsSection() {
+   const skillCategories = [
+      {
+         title: 'Frontend',
+         icon: Code,
+         skills: [
+            {
+               name: 'HTML',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+            },
+            {
+               name: 'CSS',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+            },
+            {
+               name: 'JavaScript',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+            },
+            {
+               name: 'Figma',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
+            },
+            {
+               name: 'React',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+            },
+            {
+               name: 'NPM',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg',
+            },
+         ],
+      },
+   ];
    return (
       <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-[#0F0F0F]">
          <div className="container mx-auto px-4 sm:px-6">
