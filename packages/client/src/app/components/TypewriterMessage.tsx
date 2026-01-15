@@ -66,7 +66,7 @@ export const TypewriterMessage = ({
 
       // Cleanup interval on unmount
       return () => clearInterval(intervalId);
-   }, [content, isNew, onTyping, onComplete]);
+   }, [content, isNew, onComplete]);
 
    // CURSOR Bug FIX: Append the cursor character directly to the text string
    // We use "▍" (a unicode block) instead of a <span>
