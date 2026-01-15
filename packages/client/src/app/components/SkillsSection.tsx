@@ -36,5 +36,36 @@ export function SkillsSection() {
                                 </div>
 
 
+                                {/* Skills under category */}
+                                <div className="space-y-3">
+                                    {category.skills.map((skill, skillIdx) => (
+                                        <motion.div
+                                            key={skill.name}
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: (idx * 0.1) + (skillIdx * 0.05) }}
+                                            whileHover={{ scale: 1.05, y: -5 }}
+                                            className="bg-[#1A1A1A] border-2 border-[#C9A24D]/30 rounded-xl p-3 sm:p-4 hover:border-[#C9A24D] transition-all cursor-pointer"
+                                        >
+                                        <div className="flex items-center gap-3">
+                                            <img 
+                                                src={skill.logo} 
+                                                alt={skill.name} 
+                                                className="w-8 h-8 object-contain"
+                                                style={{ filter: skill.name === "Express" || skill.name === "GitHub Action" ? 'invert(1)' : 'none' }}
+                                            />
+                                            <span className="font-medium text-sm text-[#D1D1D1]">{skill.name}</span>
+                                        </div>
+                                    </motion.div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </div>
+            </div>
+
+
     )
 }
