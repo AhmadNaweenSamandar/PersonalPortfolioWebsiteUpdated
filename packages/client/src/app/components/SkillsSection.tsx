@@ -57,6 +57,59 @@ export function SkillsSection() {
             },
          ],
       },
+      //   Database skills
+      {
+         title: 'Database',
+         icon: Database,
+         skills: [
+            {
+               name: 'SQL',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+            },
+            {
+               name: 'Django',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg',
+            },
+         ],
+      },
+      //   DevOps skills
+      {
+         title: 'DevOps',
+         icon: GitBranch,
+         skills: [
+            {
+               name: 'Git',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+            },
+            {
+               name: 'GitHub Action',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+            },
+            {
+               name: 'Netlify',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg',
+            },
+            {
+               name: 'Docker',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+            },
+         ],
+      },
+      //   AI skills
+      {
+         title: 'AI/ML',
+         icon: Brain,
+         skills: [
+            {
+               name: 'ChatGPT API',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/openai/openai-original.svg',
+            },
+            {
+               name: 'PyTorch',
+               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg',
+            },
+         ],
+      },
    ];
    return (
       <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-[#0F0F0F]">

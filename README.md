@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# Personal Portfolio Website with AI Chatbot 🤖🌐
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern personal portfolio website integrated with an AI-powered chatbot that answers questions related to my **professional background, skills, and experience**.  
+The chatbot is built using the **Gemini API** and maintains conversation history using a structured backend.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+- Interactive personal portfolio website
+- AI-powered chatbot trained on my professional background
+- Persistent conversation history with unique conversation IDs
+- Secure API key handling
+- Clean, modern UI with smooth animations
+- Scalable backend architecture
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧠 Chatbot Capabilities
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Answers questions about:
+   - Education
+   - Skills & technologies
+   - Projects
+   - Work experience
+   - Career interests
+- Maintains conversation context using unique conversation IDs
+- Stores chat history in a SQL database
 
-```js
-export default defineConfig([
-   globalIgnores(['dist']),
-   {
-      files: ['**/*.{ts,tsx}'],
-      extends: [
-         // Other configs...
+---
 
-         // Remove tseslint.configs.recommended and replace with this
-         tseslint.configs.recommendedTypeChecked,
-         // Alternatively, use this for stricter rules
-         tseslint.configs.strictTypeChecked,
-         // Optionally, add this for stylistic rules
-         tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tech Stack
 
-         // Other configs...
-      ],
-      languageOptions: {
-         parserOptions: {
-            project: ['./tsconfig.node.json', './tsconfig.app.json'],
-            tsconfigRootDir: import.meta.dirname,
-         },
-         // other options...
-      },
-   },
-]);
-```
+### Frontend
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **React.js**
+- **Tailwind CSS**
+- **Framer Motion** (animations)
+- **Lucide Icons**
+- Responsive and accessible UI design
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+### Backend
 
-export default defineConfig([
-   globalIgnores(['dist']),
-   {
-      files: ['**/*.{ts,tsx}'],
-      extends: [
-         // Other configs...
-         // Enable lint rules for React
-         reactX.configs['recommended-typescript'],
-         // Enable lint rules for React DOM
-         reactDom.configs.recommended,
-      ],
-      languageOptions: {
-         parserOptions: {
-            project: ['./tsconfig.node.json', './tsconfig.app.json'],
-            tsconfigRootDir: import.meta.dirname,
-         },
-         // other options...
-      },
-   },
-]);
-```
+- **Node.js**
+- **Express.js**
+- **ChatGPT API**
+- **Zod** – validation & UUID generation
+- **dotenv** – environment variable security
+- **SQL Database** – conversation & message history
+
+---
+
+## 🏗️ System Architecture
+
+The following diagram illustrates the overall system architecture of the application:
+
+![Application readmepic](./readmepic/PersonalWebsiteArchitecture.PNG)
+
+---
+
+## 📁 Project Structure
