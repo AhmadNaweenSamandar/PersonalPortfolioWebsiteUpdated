@@ -22,6 +22,29 @@ export function JourneySection() {
          >
             My Journey
          </motion.h2>
+
+         <div className="max-w-6xl mx-auto relative px-4">
+            {/* Curved path SVG */}
+            <div className="relative" style={{ height: '300px' }}>
+               <svg
+                  className="absolute inset-0 w-full h-full pointer-events-none"
+                  viewBox="0 0 1000 300"
+                  preserveAspectRatio="xMidYMid meet"
+               >
+                  <motion.path
+                     d="M 50,250 Q 250,80 450,180 T 950,120"
+                     stroke="#C9A24D"
+                     strokeWidth="3"
+                     fill="none"
+                     strokeDasharray="8,4"
+                     initial={{ pathLength: 0, opacity: 0 }}
+                     whileInView={{ pathLength: 1, opacity: 1 }}
+                     viewport={{ once: true }}
+                     transition={{ duration: 2, ease: 'easeInOut' }}
+                  />
+               </svg>
+            </div>
+         </div>
       </section>
    );
 }
