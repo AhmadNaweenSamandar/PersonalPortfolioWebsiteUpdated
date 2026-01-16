@@ -90,34 +90,84 @@ export function ProjectsSection() {
                         className="relative z-10 bg-[#0F0F0F] rounded-2xl shadow-2xl overflow-hidden border border-[#C9A24D]/50 max-w-md mx-auto md:mx-0"
                      >
                         {!flipped ? (
-                            //project card front
-                            <div>
-                                <div className="p-6">
-                                  <div className="flex flex-wrap gap-2 mb-4">
+                           //project card front
+                           <div>
+                              <div className="p-6">
+                                 <div className="flex flex-wrap gap-2 mb-4">
                                     {currentProject.tools.map((tool) => (
-                                      <span
-                                        key={tool}
-                                        className="px-3 py-1 bg-[#C9A24D]/20 text-[#C9A24D] border border-[#C9A24D]/50 rounded-full text-xs font-medium"
-                                      >
-                                        {tool}
-                                      </span>
+                                       <span
+                                          key={tool}
+                                          className="px-3 py-1 bg-[#C9A24D]/20 text-[#C9A24D] border border-[#C9A24D]/50 rounded-full text-xs font-medium"
+                                       >
+                                          {tool}
+                                       </span>
                                     ))}
-                                  </div>
-                                  <h3 className="text-2xl font-bold mb-3 text-[#D1D1D1]">{currentProject.title}</h3>
-                                  <p className="text-[#D1D1D1]/80 mb-6 text-sm sm:text-base">{currentProject.description}</p>
-                                  <button
+                                 </div>
+                                 <h3 className="text-2xl font-bold mb-3 text-[#D1D1D1]">
+                                    {currentProject.title}
+                                 </h3>
+                                 <p className="text-[#D1D1D1]/80 mb-6 text-sm sm:text-base">
+                                    {currentProject.description}
+                                 </p>
+                                 <button
                                     onClick={() => setFlipped(true)}
                                     className="w-full py-3 bg-[#C9A24D] text-[#0F0F0F] rounded-xl hover:shadow-md hover:shadow-[#C9A24D]/20 transition-shadow font-semibold"
-                                  >
+                                 >
                                     View Details
-                                  </button>
-                                </div>
-                            </div>
+                                 </button>
+                              </div>
+                           </div>
                         ) : (
+                           //main project card back
+                           <div className="p-6 min-h-[450px] sm:min-h-[500px] flex flex-col">
+                              <h3 className="text-2xl font-bold mb-4 text-[#D1D1D1]">
+                                 {currentProject.title}
+                              </h3>
+                              <p className="text-[#D1D1D1]/80 mb-8 flex-1 text-sm sm:text-base">
+                                 {currentProject.detailedDescription}
+                              </p>
+                              <div className="space-y-3">
+                                 <a
+                                    href={currentProject.demoLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2 w-full py-3 bg-[#C9A24D] text-[#0F0F0F] rounded-xl hover:shadow-md hover:shadow-[#C9A24D]/20 transition-shadow font-semibold"
+                                 >
+                                    <ExternalLink className="w-5 h-5" />
+                                    View Demo
+                                 </a>
 
+                                 <a
+                                    href={currentProject.githubLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2 w-full py-3 bg-[#1A1A1A] text-[#D1D1D1] rounded-xl border border-[#C9A24D]/50 hover:shadow-md hover:shadow-[#C9A24D]/15 transition-shadow"
+                                 >
+                                    <Github className="w-5 h-5" />
+                                    View Code
+                                 </a>
+
+                                 <button
+                                    onClick={() => setFlipped(false)}
+                                    className="w-full py-3 border-2 border-[#C9A24D]/30 text-[#D1D1D1] rounded-xl hover:border-[#C9A24D] transition-colors"
+                                 >
+                                    Back
+                                 </button>
+                              </div>
+                           </div>
                         )}
                      </motion.div>
                   </AnimatePresence>
+               </div>
+
+               {/* Navigation */}
+               <div className="flex justify-center gap-4 mt-8">
+                  <button
+                     onClick={nextProject}
+                     className="px-6 py-3 bg-[#C9A24D] text-[#0F0F0F] rounded-full hover:shadow-md hover:shadow-[#C9A24D]/20 transition-shadow font-semibold"
+                  >
+                     Next Project
+                  </button>
                </div>
             </div>
          </div>
