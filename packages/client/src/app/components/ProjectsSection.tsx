@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { ExternalLink, Github } from 'lucide-react';
 
 interface Project {
    id: number;
@@ -14,6 +15,26 @@ interface Project {
 
 export function ProjectsSection() {
    const [projects, setProjects] = useState<Project[]>([]);
+
+   const [flipped, setFlipped] = useState(false);
+   //flipping logic
+   //implemented using an array
+   const nextProject = () => {
+      //initially no card is flipped
+      setFlipped(false);
+
+      setProjects((prev) => {
+         //store prev in newPorjects
+         const newProjects = [...prev];
+         //add the first card in first variable
+         const first = newProjects.shift()!;
+         //add the first card back to the end creating card loop transition
+         newProjects.push(first);
+         return newProjects;
+      });
+   };
+
+   const currentProject = projects[0];
    return (
       <section id="projects" className="py-12 sm:py-16 lg:py-20 bg-[#1A1A1A]">
          <div className="container mx-auto px-4 sm:px-6">
