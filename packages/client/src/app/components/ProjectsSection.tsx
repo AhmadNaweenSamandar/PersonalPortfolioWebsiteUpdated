@@ -14,7 +14,43 @@ interface Project {
 }
 
 export function ProjectsSection() {
-   const [projects, setProjects] = useState<Project[]>([]);
+   const [projects, setProjects] = useState<Project[]>([
+      {
+         id: 1,
+         title: 'Pingly',
+         description: 'Social-Work study platform for uOttawa students.',
+         image: './src/ProjectPhotos/pingly.jpg',
+         tools: ['React', 'Node.js', 'Express'],
+         demoLink: 'https://mypingly.netlify.app/',
+         githubLink: 'https://github.com/AhmadNaweenSamandar/Pingly',
+         detailedDescription:
+            'A social-work study platform allows students connect with each other. They can ask questions, create projects and code in teams.',
+      },
+
+      {
+         id: 2,
+         title: 'AlgoFinance',
+         description: 'Personal Financial Insight Generator',
+         image: './src/ProjectPhotos/pingly.jpg',
+         tools: ['React', 'Node.js', 'SQL'],
+         demoLink: 'https://github.com/AhmadNaweenSamandar/AlgoFinance',
+         githubLink: 'https://github.com/AhmadNaweenSamandar/AlgoFinance',
+         detailedDescription:
+            'AI integerated simple UI website allows user upload document. It will be analyzed by AI and insight will be generated with a report.',
+      },
+
+      {
+         id: 3,
+         title: 'Spotify',
+         description: 'A simple Spotify clone build for practice.',
+         image: './src/ProjectPhotos/pingly.jpg',
+         tools: ['HTML', 'CSS', 'JavaScript'],
+         demoLink: 'https://github.com/AhmadNaweenSamandar/Spotify',
+         githubLink: 'https://github.com/AhmadNaweenSamandar/Spotify',
+         detailedDescription:
+            'Music dashboard with various songs and podcasts. It allows users to search for songs and play music in real time.',
+      },
+   ]);
 
    const [flipped, setFlipped] = useState(false);
    //flipping logic
