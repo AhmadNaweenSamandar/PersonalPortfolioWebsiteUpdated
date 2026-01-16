@@ -77,6 +77,19 @@ export function ProjectsSection() {
                         );
                      })}
                   </div>
+
+                  {/* Main Project Card */}
+                  <AnimatePresence mode="wait">
+                     <motion.div
+                        key={`${currentProject.id}-${flipped}`}
+                        initial={{ rotateY: 90, opacity: 0 }}
+                        animate={{ rotateY: 0, opacity: 1 }}
+                        exit={{ rotateY: -90, opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        style={{ transformStyle: 'preserve-3d' }}
+                        className="relative z-10 bg-[#0F0F0F] rounded-2xl shadow-2xl overflow-hidden border border-[#C9A24D]/50 max-w-md mx-auto md:mx-0"
+                     ></motion.div>
+                  </AnimatePresence>
                </div>
             </div>
          </div>
