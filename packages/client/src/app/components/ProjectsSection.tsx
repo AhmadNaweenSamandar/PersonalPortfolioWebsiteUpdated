@@ -169,6 +169,20 @@ export function ProjectsSection() {
                      Next Project
                   </button>
                </div>
+
+               {/* Dots indicator */}
+               <div className="flex justify-center gap-2 mt-6">
+                  {projects.map((_, idx) => (
+                     <div
+                        key={idx}
+                        className={`h-2 rounded-full transition-all ${
+                           idx === 0
+                              ? 'w-8 bg-[#C9A24D]'
+                              : 'w-2 bg-[#C9A24D]/30'
+                        }`}
+                     />
+                  ))}
+               </div>
             </div>
          </div>
       </section>
