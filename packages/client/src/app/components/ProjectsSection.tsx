@@ -33,7 +33,29 @@ export function ProjectsSection() {
                   style={{ perspective: '1500px', minHeight: '500px' }}
                >
                   {/* Background stacked cards */}
-                  <div className="absolute right-0 top-0 hidden md:block"></div>
+                  <div className="absolute right-0 top-0 hidden md:block">
+                     {projects.slice(1, 4).map((project, idx) => {
+                        const scale = 1 - (idx + 1) * 0.05;
+                        const translateX = (idx + 1) * 15;
+                        const translateY = (idx + 1) * 10;
+
+                        return (
+                           <motion.div
+                              key={project.id}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 0.6 - idx * 0.15 }}
+                              style={{
+                                 position: 'absolute',
+                                 right: 0,
+                                 top: 0,
+                                 transform: `scale(${scale}) translateX(${translateX}px) translateY(${translateY}px)`,
+                                 zIndex: 3 - idx,
+                              }}
+                              className="w-64 h-80 bg-[#0F0F0F] rounded-2xl border border-[#C9A24D]/30 shadow-xl"
+                           ></motion.div>
+                        );
+                     })}
+                  </div>
                </div>
             </div>
          </div>
