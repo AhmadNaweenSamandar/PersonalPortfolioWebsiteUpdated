@@ -13,6 +13,7 @@ interface Project {
 }
 
 export function ProjectsSection() {
+   const [projects, setProjects] = useState<Project[]>([]);
    return (
       <section id="projects" className="py-12 sm:py-16 lg:py-20 bg-[#1A1A1A]">
          <div className="container mx-auto px-4 sm:px-6">
@@ -24,6 +25,17 @@ export function ProjectsSection() {
             >
                Featured Projects
             </motion.h2>
+
+            <div className="max-w-4xl mx-auto relative">
+               {/* Stacked cards on the right */}
+               <div
+                  className="relative"
+                  style={{ perspective: '1500px', minHeight: '500px' }}
+               >
+                  {/* Background stacked cards */}
+                  <div className="absolute right-0 top-0 hidden md:block"></div>
+               </div>
+            </div>
          </div>
       </section>
    );
