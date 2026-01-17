@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X } from 'lucide-react';
+import { X, Calendar, Users } from 'lucide-react';
 
 interface JourneyItem {
    date: string;
@@ -142,6 +142,45 @@ export function JourneySection() {
                         >
                            <X className="w-5 h-5 sm:w-6 sm:h-6 text-[#D1D1D1]" />
                         </button>
+                     </div>
+
+                     {/*journey container text info*/}
+                     <div className="p-6 sm:p-8">
+                        <div className="flex-1">
+                           <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-[#D1D1D1]">
+                              {selectedItem.title}
+                           </h3>
+                           <div className="flex items-center gap-4 text-[#D1D1D1]/70">
+                              <div className="flex items-center gap-2">
+                                 <Calendar className="w-4 h-4 text-[#C9A24D]" />
+                                 <span className="text-xs sm:text-sm">
+                                    {selectedItem.startDate} -{' '}
+                                    {selectedItem.endDate}
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+
+                        {/* Description Section */}
+                        <div className="space-y-4">
+                           <div>
+                              <h4 className="font-bold text-lg mb-2 flex items-center gap-2 text-[#D1D1D1]">
+                                 <Users className="w-5 h-5 text-[#C9A24D]" />
+                                 Experience Description
+                              </h4>
+                              <p className="text-[#D1D1D1]/80 leading-relaxed text-sm sm:text-base">
+                                 {selectedItem.description}
+                              </p>
+                           </div>
+                           {/* Footer / Hardcoded Reflection */}
+                           <div className="pt-4 border-t border-[#C9A24D]/30">
+                              <p className="text-sm text-[#D1D1D1]/60">
+                                 This experience has been instrumental in
+                                 developing my skills and understanding of the
+                                 tech industry.
+                              </p>
+                           </div>
+                        </div>
                      </div>
                   </motion.div>
                </motion.div>
