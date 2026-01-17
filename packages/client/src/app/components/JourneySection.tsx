@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { X } from 'lucide-react';
 
 interface JourneyItem {
    date: string;
@@ -120,7 +121,30 @@ export function JourneySection() {
                   className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
                   // UX Pattern: Clicking the dark background closes the modal
                   onClick={() => setSelectedItem(null)}
-               ></motion.div>
+               >
+                  {/* 2. MODAL CARD 
+                     The actual content container.
+                     */}
+                  <motion.div
+                     initial={{ scale: 0.9, opacity: 0 }}
+                     animate={{ scale: 1, opacity: 1 }}
+                     exit={{ scale: 0.9, opacity: 0 }}
+                     // CRITICAL: Stop Propagation.
+                     // Prevents the click on the card from bubbling up to the backdrop and closing the modal.
+                     onClick={(e) => e.stopPropagation()}
+                     className="bg-[#1A1A1A] rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden border border-[#C9A24D]/30"
+                  >
+                     <div>
+                        {/* Close 'X' Button top-right */}
+                        <button
+                           onClick={() => setSelectedItem(null)}
+                           className="absolute top-4 right-4 p-2 bg-[#0F0F0F]/80 backdrop-blur-sm rounded-full shadow-lg hover:bg-[#0F0F0F] transition-colors"
+                        >
+                           <X className="w-5 h-5 sm:w-6 sm:h-6 text-[#D1D1D1]" />
+                        </button>
+                     </div>
+                  </motion.div>
+               </motion.div>
             )}
          </AnimatePresence>
       </section>
