@@ -100,6 +100,29 @@ export function JourneySection() {
                </div>
             </div>
          </div>
+
+         {/* Popup Modal */}
+         {/* AnimatePresence: specific to Framer Motion. 
+            It allows the exit animations (defined in exit prop) to finish playing 
+            before the component is actually removed from the DOM.
+            */}
+         <AnimatePresence>
+            {/* Conditional Rendering: The modal only exists in the DOM if 'selectedItem' is truthy */}
+            {selectedItem && (
+               /* 1. BACKDROP / OVERLAY 
+                  This outer div covers the entire screen and handles the dimming effect.
+               */
+               <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  // Fixed positioning covers the whole viewport. z-50 ensures it sits on top of everything.
+                  className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                  // UX Pattern: Clicking the dark background closes the modal
+                  onClick={() => setSelectedItem(null)}
+               ></motion.div>
+            )}
+         </AnimatePresence>
       </section>
    );
 }
