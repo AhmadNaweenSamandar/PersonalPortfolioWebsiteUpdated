@@ -110,7 +110,7 @@ export function HeroSection() {
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.6 }}
             >
-               <p className="text-[#D1D1D1] mb-4 text-sm sm:text-base">
+               <p className="text-[#D1D1D1] mb-4 text-md md:text-base">
                   Welcome
                </p>
             </motion.div>
@@ -125,7 +125,7 @@ export function HeroSection() {
                <br />
                <span
                   className="bg-gradient-to-r from-[#C9A24D] via-[#D4B56F] to-[#C9A24D] bg-clip-text text-transparent"
-                  style={{ backgroundSize: '200% auto' }}
+                  style={{ backgroundSize: '150% auto' }}
                >
                   Ahmad Naween Samandar
                </span>
