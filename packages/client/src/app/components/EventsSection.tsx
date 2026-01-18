@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X } from "lucide-react";
-
+import { X } from 'lucide-react';
 
 //event photos interface
 interface EventPhoto {
@@ -129,50 +128,74 @@ export function EventsSection() {
             </div>
          </div>
 
-      {/* ========================================================
+         {/* ========================================================
         MODAL 1: EVENT GALLERY POPUP
         Conditionally rendered if an event is selected AND no specific photo is selected yet.
        ======================================================== */}
-      <AnimatePresence>
-        {selectedEvent && !selectedPhoto && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            // BACKDROP: Fixed to cover viewport, z-50 to sit above content
-            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            // LOGIC: Clicking the dark background closes the modal
-            onClick={() => setSelectedEvent(null)}
-          >
-            <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                // LOGIC: Prevents clicks inside the modal from closing it
-                onClick={(e) => e.stopPropagation()}
-                className="bg-[#1A1A1A] rounded-3xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden border border-[#C9A24D]/30"
-            >
-
-                {/* Header Modal */}
-                <div className="flex items-center justify-between p-4 sm:p-6 border-b border-[#C9A24D]/30">
-                  <div>
-                    <h3 className="font-bold text-xl sm:text-2xl text-[#D1D1D1]">{selectedEvent.title}</h3>
-                    <p className="text-sm text-[#D1D1D1]/70">{selectedEvent.date}</p>
-                  </div>
-                  <button
-                    onClick={() => setSelectedEvent(null)}
-                    className="p-2 hover:bg-[#C9A24D]/20 rounded-full transition-colors"
+         <AnimatePresence>
+            {selectedEvent && !selectedPhoto && (
+               <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  // BACKDROP: Fixed to cover viewport, z-50 to sit above content
+                  className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                  // LOGIC: Clicking the dark background closes the modal
+                  onClick={() => setSelectedEvent(null)}
+               >
+                  <motion.div
+                     initial={{ scale: 0.9, opacity: 0 }}
+                     animate={{ scale: 1, opacity: 1 }}
+                     exit={{ scale: 0.9, opacity: 0 }}
+                     // LOGIC: Prevents clicks inside the modal from closing it
+                     onClick={(e) => e.stopPropagation()}
+                     className="bg-[#1A1A1A] rounded-3xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden border border-[#C9A24D]/30"
                   >
-                    <X className="w-5 h-5 sm:w-6 sm:h-6 text-[#D1D1D1]" />
-                  </button>
-                </div>
+                     {/* Header Modal */}
+                     <div className="flex items-center justify-between p-4 sm:p-6 border-b border-[#C9A24D]/30">
+                        <div>
+                           <h3 className="font-bold text-xl sm:text-2xl text-[#D1D1D1]">
+                              {selectedEvent.title}
+                           </h3>
+                           <p className="text-sm text-[#D1D1D1]/70">
+                              {selectedEvent.date}
+                           </p>
+                        </div>
+                        <button
+                           onClick={() => setSelectedEvent(null)}
+                           className="p-2 hover:bg-[#C9A24D]/20 rounded-full transition-colors"
+                        >
+                           <X className="w-5 h-5 sm:w-6 sm:h-6 text-[#D1D1D1]" />
+                        </button>
+                     </div>
 
-
-          </motion.div>
-
-          </motion.div>
-
-      </AnimatePresence>
+                     {/* PHOTO GRID CONTAINER
+                    max-h-[calc(90vh-100px)] ensures the grid scrolls internally if content is too tall
+                */}
+                     <div className="p-4 sm:p-6 overflow-y-auto max-h-[calc(90vh-100px)]">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                           {selectedEvent.photos.map((photo) => (
+                              <motion.div
+                                 key={photo.id}
+                                 whileHover={{ scale: 1.05 }}
+                                 // LOGIC: Opens the second modal (Full Photo View)
+                                 onClick={() => setSelectedPhoto(photo)}
+                                 className="relative aspect-square rounded-xl overflow-hidden cursor-pointer group border border-[#C9A24D]/30 hover:border-[#C9A24D] transition-all"
+                              >
+                                 {/* PHOTO CAPTION OVERLAY: Appears on hover */}
+                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-end p-3">
+                                    <p className="text-white text-xs sm:text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                                       {photo.caption}
+                                    </p>
+                                 </div>
+                              </motion.div>
+                           ))}
+                        </div>
+                     </div>
+                  </motion.div>
+               </motion.div>
+            )}
+         </AnimatePresence>
       </section>
    );
 }
