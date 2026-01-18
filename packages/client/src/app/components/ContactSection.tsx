@@ -62,7 +62,6 @@ export function ContactSection() {
                Get In Touch
             </motion.h2>
 
-            {/* Contact Info Cards */}
             {/* CONTACT CARDS CONTAINER
                 - Mobile: flex-col (Stacked vertically)
                 - Tablet/Desktop (sm+): flex-row (Side-by-side)
@@ -94,8 +93,8 @@ export function ContactSection() {
                      >
                         <div className="flex flex-col items-center text-center">
                            {/* ICON CIRCLE
-                    - Group Hover: When the *card* is hovered, this specific *icon container* scales up (scale-110)
-                    */}
+                            - Group Hover: When the *card* is hovered, this specific *icon container* scales up (scale-110)
+                            */}
                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#C9A24D] rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                               <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#0F0F0F]" />
                            </div>
@@ -110,6 +109,41 @@ export function ContactSection() {
                   );
                })}
             </div>
+            {/* SOCIAL LINKS SECTION */}
+            <motion.div
+               initial={{ opacity: 0 }}
+               whileInView={{ opacity: 1 }}
+               viewport={{ once: true }}
+               className="text-center mb-8"
+            >
+               <h3 className="text-xl sm:text-2xl font-bold mb-6 text-[#D1D1D1]">
+                  Stay Connected
+               </h3>
+               <div className="flex justify-center gap-4 sm:gap-6">
+                  {socialLinks.map((social, idx) => {
+                     const Icon = social.icon;
+                     return (
+                        <motion.a
+                           key={social.name}
+                           href={social.link}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           // POP-IN ANIMATION: Starts size 0, grows to size 1
+                           initial={{ opacity: 0, scale: 0 }}
+                           whileInView={{ opacity: 1, scale: 1 }}
+                           viewport={{ once: true }}
+                           transition={{ delay: idx * 0.1 }}
+                           // PLAYFUL HOVER:
+                           // Rotates a full 360 degrees and grows significantly (1.2)
+                           whileHover={{ scale: 1.2, rotate: 360 }}
+                           className="w-14 h-14 sm:w-16 sm:h-16 bg-[#C9A24D] rounded-full flex items-center justify-center text-[#0F0F0F] hover:shadow-md hover:shadow-[#C9A24D]/20 transition-all"
+                        >
+                           <Icon className="w-6 h-6 sm:w-8 sm:h-8" />
+                        </motion.a>
+                     );
+                  })}
+               </div>
+            </motion.div>
          </div>
       </section>
    );
