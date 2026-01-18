@@ -144,6 +144,27 @@ export function ContactSection() {
                   })}
                </div>
             </motion.div>
+
+            {/* FOOTER
+         - Simple copyright section with dynamic year
+      */}
+            <motion.div
+               initial={{ opacity: 0 }}
+               whileInView={{ opacity: 1 }}
+               viewport={{ once: true }}
+               className="text-center mt-12 sm:mt-16 pt-8 border-t border-[#C9A24D]/30"
+            >
+               <p className="text-[#D1D1D1]/80 mb-2 text-sm sm:text-base">
+                  Made with <span className="text-[#C9A24D]">❤️</span> by{' '}
+                  <span className="font-bold text-[#C9A24D]">
+                     Ahmad Naween Samandar
+                  </span>
+               </p>
+               {/* DYNAMIC DATE: Automatically updates the year */}
+               <p className="text-xs sm:text-sm text-[#D1D1D1]/60">
+                  © {new Date().getFullYear()} All rights reserved.
+               </p>
+            </motion.div>
          </div>
       </section>
    );
