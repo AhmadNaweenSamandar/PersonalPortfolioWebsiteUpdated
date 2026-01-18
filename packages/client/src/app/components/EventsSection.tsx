@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { X } from "lucide-react";
 
 
 //event photos interface
@@ -151,6 +152,21 @@ export function EventsSection() {
                 onClick={(e) => e.stopPropagation()}
                 className="bg-[#1A1A1A] rounded-3xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden border border-[#C9A24D]/30"
             >
+
+                {/* Header Modal */}
+                <div className="flex items-center justify-between p-4 sm:p-6 border-b border-[#C9A24D]/30">
+                  <div>
+                    <h3 className="font-bold text-xl sm:text-2xl text-[#D1D1D1]">{selectedEvent.title}</h3>
+                    <p className="text-sm text-[#D1D1D1]/70">{selectedEvent.date}</p>
+                  </div>
+                  <button
+                    onClick={() => setSelectedEvent(null)}
+                    className="p-2 hover:bg-[#C9A24D]/20 rounded-full transition-colors"
+                  >
+                    <X className="w-5 h-5 sm:w-6 sm:h-6 text-[#D1D1D1]" />
+                  </button>
+                </div>
+
 
           </motion.div>
 
