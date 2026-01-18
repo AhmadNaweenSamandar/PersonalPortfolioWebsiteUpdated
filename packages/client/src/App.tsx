@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
 import { AskGabinaSection } from './app/components/AskGabinaSection';
-import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { SkillsSection } from './components/SkillsSection';
-import { ProjectsSection } from './components/ProjectsSection';
-import { JourneySection } from './components/JourneySection';
-import { EventsSection } from './components/EventsSection';
-import { ContactSection } from './components/ContactSection';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { Navbar } from './app/components/Navbar';
+import { HeroSection } from './app/components/HeroSection';
+import { SkillsSection } from './app/components/SkillsSection';
+import { ProjectsSection } from './app/components/ProjectsSection';
+import { JourneySection } from './app/components/JourneySection';
+import { EventsSection } from './app/components/EventsSection';
+import { ContactSection } from './app/components/ContactSection';
 function App() {
    // useState creates a piece of memory for this component.
    // 'message' holds the actual text we get from the server.
@@ -92,6 +90,7 @@ function App() {
    // React automatically re-runs this part and displays "Hello World!".
    return (
       <div className="min-h-screen bg-[#0F0F0F]">
+         <Navbar activeSection={activeSection} />
          <main>
             <HeroSection />
             <AskGabinaSection />
