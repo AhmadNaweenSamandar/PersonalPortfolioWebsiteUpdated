@@ -15,7 +15,58 @@ interface JourneyItem {
 export function JourneySection() {
    const [selectedItem, setSelectedItem] = useState<JourneyItem | null>(null);
 
-   const journeyItems: JourneyItem[] = [];
+   const journeyItems: JourneyItem[] = [
+      {
+         date: 'Dec 2023',
+         title: 'Newcomer',
+         description:
+            'Started my journey in Canada, learning the way of life and getting used to things around me. Get to my new home and started everything from scratch.',
+         startDate: 'December 2023',
+         endDate: 'Present',
+         logo: '',
+         teamPhoto: '',
+      },
+      {
+         date: 'March 2024',
+         title: 'Volunteer',
+         description:
+            'Joined Catholic Centre for Immigrants (CCI) as social work volunteer. Gain valuable experience in work ethics of Canada. Organized many events for newcomers and community members.',
+         startDate: 'March 2024',
+         endDate: 'June 2024',
+         logo: './src/ProjectPhotos/ccilogo.jpg',
+         teamPhoto: '',
+      },
+      {
+         date: 'July 2024',
+         title: 'Part-time Youth Worker',
+         description:
+            'Worked with youth programs to organize events and manage learning program for youths. Collaborated with partners to run literacy program. Coordinated tasks with theam and reported to manager.',
+         startDate: 'July 2024',
+         endDate: 'Jan 2026',
+         logo: './src/ProjectPhotos/ccilogo.jpg',
+         teamPhoto: '',
+      },
+      {
+         date: 'Sep 2024',
+         title: 'University of Ottawa',
+         description:
+            'Enrolled in Bachelor of Applied Science in Software Engineering program at University of Ottawa, focusing on learning coding, algorithms, software engineering principles, and artificial intelligence.',
+         startDate: 'September 2024',
+         endDate: 'Present',
+         logo: './src/ProjectPhotos/uottawalogo.png',
+         teamPhoto: '',
+      },
+      {
+         date: 'Jan 2026',
+         title: 'Junior Software Developer Intern',
+         description:
+            'Contributed in developing tools and products for Faculty of Health Sciences at University of Ottawa in a four month Co-op term. Developed coding best practices and learnt collaboration in real-world projects.',
+         startDate: 'Jan 2026',
+         endDate: 'Present',
+         logo: './src/ProjectPhotos/uottawalogo.png',
+         teamPhoto: '',
+      },
+   ];
    return (
       <section id="journey" className="py-12 sm:py-16 lg:py-20 bg-[#0F0F0F]">
          <div className="container mx-auto px-4 sm:px-6">
