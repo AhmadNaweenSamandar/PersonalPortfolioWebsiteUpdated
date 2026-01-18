@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 import { AskGabinaSection } from './app/components/AskGabinaSection';
-
+import { Navbar } from './components/Navbar';
+import { HeroSection } from './components/HeroSection';
+import { SkillsSection } from './components/SkillsSection';
+import { ProjectsSection } from './components/ProjectsSection';
+import { JourneySection } from './components/JourneySection';
+import { EventsSection } from './components/EventsSection';
+import { ContactSection } from './components/ContactSection';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 function App() {
    // useState creates a piece of memory for this component.
    // 'message' holds the actual text we get from the server.
@@ -85,7 +93,13 @@ function App() {
    return (
       <div className="min-h-screen bg-[#0F0F0F]">
          <main>
+            <HeroSection />
             <AskGabinaSection />
+            <SkillsSection />
+            <ProjectsSection />
+            <JourneySection />
+            <EventsSection />
+            <ContactSection />
          </main>
       </div>
    );
