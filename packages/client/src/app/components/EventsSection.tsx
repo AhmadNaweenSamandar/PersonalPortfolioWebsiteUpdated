@@ -196,6 +196,33 @@ export function EventsSection() {
                </motion.div>
             )}
          </AnimatePresence>
+
+         {/* ========================================================
+        MODAL 2: FULL SCREEN PHOTO LIGHTBOX
+        Rendered when a specific photo is clicked.
+       ======================================================== */}
+         <AnimatePresence>
+            {selectedPhoto && (
+               <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  // STYLING: z-[60] ensures this sits ON TOP of the previous modal (z-50) if both were open
+                  // bg-black/95 creates a darker, more immersive focus mode
+                  className="fixed inset-0 bg-black/95 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
+                  onClick={() => setSelectedPhoto(null)}
+               >
+                  <motion.div
+                     initial={{ scale: 0.8, opacity: 0 }}
+                     animate={{ scale: 1, opacity: 1 }}
+                     exit={{ scale: 0.8, opacity: 0 }}
+                     className="relative max-w-5xl max-h-[90vh]"
+                     //ensures the picture stays on if user click on the screen
+                     onClick={(e) => e.stopPropagation()}
+                  ></motion.div>
+               </motion.div>
+            )}
+         </AnimatePresence>
       </section>
    );
 }
