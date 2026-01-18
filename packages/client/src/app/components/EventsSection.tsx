@@ -219,7 +219,22 @@ export function EventsSection() {
                      className="relative max-w-5xl max-h-[90vh]"
                      //ensures the picture stays on if user click on the screen
                      onClick={(e) => e.stopPropagation()}
-                  ></motion.div>
+                  >
+                     {/* FLOATING CLOSE BUTTON */}
+                     <button
+                        onClick={() => setSelectedPhoto(null)}
+                        className="absolute -top-12 right-0 p-2 bg-[#C9A24D] rounded-full shadow-lg hover:bg-[#C9A24D]/80 transition-colors z-10"
+                     >
+                        <X className="w-6 h-6 text-[#0F0F0F]" />
+                     </button>
+
+                     {/* CAPTION BAR */}
+                     <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent rounded-b-2xl">
+                        <p className="text-white text-center font-medium">
+                           {selectedPhoto.caption}
+                        </p>
+                     </div>
+                  </motion.div>
                </motion.div>
             )}
          </AnimatePresence>
