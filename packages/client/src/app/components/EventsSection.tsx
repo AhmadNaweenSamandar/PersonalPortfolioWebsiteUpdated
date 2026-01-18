@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
+
 
 //event photos interface
 interface EventPhoto {
@@ -126,6 +127,36 @@ export function EventsSection() {
                ))}
             </div>
          </div>
+
+      {/* ========================================================
+        MODAL 1: EVENT GALLERY POPUP
+        Conditionally rendered if an event is selected AND no specific photo is selected yet.
+       ======================================================== */}
+      <AnimatePresence>
+        {selectedEvent && !selectedPhoto && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            // BACKDROP: Fixed to cover viewport, z-50 to sit above content
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            // LOGIC: Clicking the dark background closes the modal
+            onClick={() => setSelectedEvent(null)}
+          >
+            <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                // LOGIC: Prevents clicks inside the modal from closing it
+                onClick={(e) => e.stopPropagation()}
+                className="bg-[#1A1A1A] rounded-3xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden border border-[#C9A24D]/30"
+            >
+
+          </motion.div>
+
+          </motion.div>
+
+      </AnimatePresence>
       </section>
    );
 }
