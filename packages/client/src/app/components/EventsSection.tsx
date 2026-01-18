@@ -71,6 +71,60 @@ export function EventsSection() {
             >
                Events & Conferences
             </motion.h2>
+
+            {/* EVENT CARDS GRID */}
+            <div className="max-w-6xl mx-auto grid sm:grid-cols-2 gap-6 sm:gap-8">
+               {events.map((event, idx) => (
+                  <motion.div
+                     key={event.id}
+                     // STAGGERED ENTRANCE: Uses the index (idx) to delay each card slightly (0.2s * index)
+                     initial={{ opacity: 0, y: 30 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ delay: idx * 0.2 }}
+                     // HOVER INTERACTION: Card lifts up slightly (-10px) on hover
+                     whileHover={{ y: -10 }}
+                     // LOGIC: Opens the first modal (Gallery)
+                     onClick={() => setSelectedEvent(event)}
+                     // STYLING:
+                     // 'group': Allows child elements (like the image) to react when the parent is hovered.
+                     // 'cursor-pointer': Indicates interactivity.
+                     className="group relative bg-[#0F0F0F] rounded-3xl overflow-hidden shadow-xl hover:shadow-md hover:shadow-[#C9A24D]/15 transition-all cursor-pointer border border-[#C9A24D]/30"
+                  >
+                     <div className="relative h-64 sm:h-80 lg:h-96">
+                        {/* GRADIENT OVERLAY: Ensures text readability by darkening the bottom of the image */}
+
+                        {/* Event info */}
+                        {/* CARD CONTENT */}
+                        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+                           <div className="flex items-center gap-2 mb-2">
+                              {/* Date Badge */}
+                              <span className="px-3 py-1 bg-[#C9A24D] text-[#0F0F0F] rounded-full text-xs sm:text-sm font-medium">
+                                 {event.date}
+                              </span>
+                           </div>
+                           <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-[#D1D1D1]">
+                              {event.title}
+                           </h3>
+                           <p className="text-[#D1D1D1]/80 text-sm sm:text-base">
+                              {event.description}
+                           </p>
+                        </div>
+                     </div>
+
+                     {/* "CLICK TO VIEW" BADGE
+                            Initially invisible (opacity: 0), only appears when user hovers the card.
+                        */}
+                     <motion.div
+                        className="absolute top-4 right-4 px-3 py-1 bg-[#C9A24D] text-[#0F0F0F] rounded-full text-xs font-medium"
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 1 }}
+                     >
+                        Click to view gallery
+                     </motion.div>
+                  </motion.div>
+               ))}
+            </div>
          </div>
       </section>
    );
