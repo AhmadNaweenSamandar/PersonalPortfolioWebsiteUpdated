@@ -101,8 +101,8 @@ export function SkillsSection() {
          icon: Brain,
          skills: [
             {
-               name: 'ChatGPT API',
-               logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/openai/openai-original.svg',
+               name: 'Gemini API',
+               logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlegemini.svg',
             },
             {
                name: 'PyTorch',

@@ -18,7 +18,7 @@ export function JourneySection() {
    const journeyItems: JourneyItem[] = [
       {
          date: 'Dec 2023',
-         title: 'Newcomer',
+         title: 'Newcomer to Canada',
          description:
             'Started my journey in Canada, learning the way of life and getting used to things around me. Get to my new home and started everything from scratch.',
          startDate: 'December 2023',
@@ -48,7 +48,7 @@ export function JourneySection() {
       },
       {
          date: 'Sep 2024',
-         title: 'University of Ottawa',
+         title: 'Admitted to University of Ottawa',
          description:
             'Enrolled in Bachelor of Applied Science in Software Engineering program at University of Ottawa, focusing on learning coding, algorithms, software engineering principles, and artificial intelligence.',
          startDate: 'September 2024',
@@ -89,7 +89,7 @@ export function JourneySection() {
                   >
                      <motion.path
                         d="M 50,250 Q 250,80 450,180 T 950,120"
-                        stroke="#C9A24D"
+                        stroke=""
                         strokeWidth="3"
                         fill="none"
                         strokeDasharray="8,4"

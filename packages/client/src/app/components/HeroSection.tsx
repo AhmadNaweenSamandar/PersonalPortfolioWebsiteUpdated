@@ -27,8 +27,8 @@ export function HeroSection() {
          <motion.div
             className="absolute top-10 sm:top-20 right-10 sm:right-20"
             animate={{
-               rotate: [0, 360],
-               y: [0, -20, 0],
+               rotate: [0, 180],
+               y: [0, -5, 0],
             }}
             transition={{
                duration: 8,
@@ -36,15 +36,15 @@ export function HeroSection() {
                ease: 'easeInOut',
             }}
          >
-            <Diamond className="w-8 h-8 sm:w-12 lg:w-16 text-[#C9A24D] opacity-20" />
+            <Diamond className="w-15 h-15 sm:w-12 lg:w-16 text-[#C9A24D] opacity-30" />
          </motion.div>
 
          {/* {circle moving animation} */}
          <motion.div
             className="absolute top-1/4 left-10 sm:left-20"
             animate={{
-               scale: [1, 1.2, 1],
-               opacity: [0.3, 0.5, 0.3],
+               scale: [1.3, 2, 1.3],
+               opacity: [0.5, 0.7, 0.5],
             }}
             transition={{
                duration: 4,
@@ -63,8 +63,8 @@ export function HeroSection() {
                style={{
                   left: '50%',
                   top: '50%',
-                  marginLeft: '-200px',
-                  marginTop: '-100px',
+                  marginLeft: '-220px',
+                  marginTop: '-10px',
                }}
             >
                <svg width="400" height="300" viewBox="0 0 400 300">
@@ -110,7 +110,7 @@ export function HeroSection() {
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.6 }}
             >
-               <p className="text-[#D1D1D1] mb-4 text-sm sm:text-base">
+               <p className="text-[#D1D1D1] mb-4 text-md md:text-base">
                   Welcome
                </p>
             </motion.div>
@@ -125,7 +125,7 @@ export function HeroSection() {
                <br />
                <span
                   className="bg-gradient-to-r from-[#C9A24D] via-[#D4B56F] to-[#C9A24D] bg-clip-text text-transparent"
-                  style={{ backgroundSize: '200% auto' }}
+                  style={{ backgroundSize: '150% auto' }}
                >
                   Ahmad Naween Samandar
                </span>
