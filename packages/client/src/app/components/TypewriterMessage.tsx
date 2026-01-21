@@ -70,7 +70,7 @@ export const TypewriterMessage = ({
 
    // CURSOR Bug FIX: Append the cursor character directly to the text string
    // We use "▍" (a unicode block) instead of a <span>
-   const textWithCursor = isTyping ? displayedText + '▍' : displayedText;
+   // const textWithCursor = isTyping ? displayedText + '▍' : displayedText;
 
    // 2. NEW: Trigger scroll whenever text changes
    useEffect(() => {
