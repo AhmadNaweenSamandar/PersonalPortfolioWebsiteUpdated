@@ -1,7 +1,7 @@
 // src/controllers/chat.controller.ts
 import { Request, Response } from "express";
 import { z } from "zod";
-import { ChatService } from "../services/chat.services";
+import { ChatService } from "../services/chat.services.js";
 
 const chatService = new ChatService();
 

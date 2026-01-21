@@ -6,7 +6,8 @@
       "module": "NodeNext", //NodeNext added inead of common js
       "strict": true,
       "esModuleInterop": true,
-      "moduleResolution": "NodeNext"
+      "moduleResolution": "NodeNext",
+      "skipLibCheck": true, //skip errors from node_modules directory only focus on code errors
       
       
       
