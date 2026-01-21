@@ -26,12 +26,9 @@ const port = process.env.PORT || 5000;
 app.post('/api/chat', chatController);
 
 app.get('/', (req: Request, res: Response) => {
-   res.send('Hello World!');
+   res.send('Server is ready and running!');
 });
 
-app.get('/api/hello', (req: Request, res: Response) => {
-   res.json({ message: 'Hello World!' });
-});
 
 app.listen(port, () => {
    console.log(`Server is running on http://localhost:${port}`);
