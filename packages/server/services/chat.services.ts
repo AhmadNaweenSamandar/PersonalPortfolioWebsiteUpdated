@@ -1,8 +1,8 @@
 // src/services/chat.service.ts
 import { GoogleGenAI } from "@google/genai";
-import { ChatRepository } from "../repositories/chat.repository";
+import { ChatRepository } from "../repositories/chat.repository.js";
 import dotenv from 'dotenv';
-import { RESUME_DATA } from "../constants/portfolioData";
+import { RESUME_DATA } from "../constants/portfolioData.js";
 
 dotenv.config();
 
