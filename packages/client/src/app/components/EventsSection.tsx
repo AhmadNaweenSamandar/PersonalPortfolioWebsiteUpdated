@@ -28,10 +28,14 @@ export function EventsSection() {
          id: 1,
          title: 'Zwanan Team Introduction',
          date: 'Jun 2025',
-         image: '',
+         image: '/ProjectPhotos/teamlaunch.jpg',
          description: 'Cricket team introduction and youth appreciation event.',
          photos: [
-            { id: 1, url: '', caption: 'Opening Ceremony' },
+            {
+               id: 1,
+               url: '/ProjectPhotos/teamlaunch.jpg',
+               caption: 'Opening Ceremony',
+            },
             { id: 2, url: '', caption: 'Speaker' },
             { id: 3, url: '', caption: 'Presentation' },
             { id: 4, url: '', caption: 'Team introduction' },
@@ -44,7 +48,7 @@ export function EventsSection() {
          id: 2,
          title: 'Workshop regarding Artificial Intelligence',
          date: 'August 2025',
-         image: '',
+         image: '/ProjectPhotos/aiworkshop.PNG',
          description:
             'Hands on workshop about Large-Language-Models, how to use ChatGPT and Gemini along side learning opportunities in AI discussed.',
          photos: [

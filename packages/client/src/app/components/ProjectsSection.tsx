@@ -19,7 +19,7 @@ export function ProjectsSection() {
          id: 1,
          title: 'Pingly',
          description: 'Social-Work study platform for uOttawa students.',
-         image: './src/ProjectPhotos/pingly.jpg',
+         image: '/ProjectPhotos/pingly.jpg',
          tools: ['React', 'Node.js', 'Express'],
          demoLink: 'https://mypingly.netlify.app/',
          githubLink: 'https://github.com/AhmadNaweenSamandar/Pingly',

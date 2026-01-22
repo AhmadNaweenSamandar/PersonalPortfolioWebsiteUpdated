@@ -33,8 +33,8 @@ export function JourneySection() {
             'Joined Catholic Centre for Immigrants (CCI) as social work volunteer. Gain valuable experience in work ethics of Canada. Organized many events for newcomers and community members.',
          startDate: 'March 2024',
          endDate: 'June 2024',
-         logo: './src/ProjectPhotos/ccilogo.jpg',
-         teamPhoto: '',
+         logo: '/ProjectPhotos/ccilogo.jpg',
+         teamPhoto: '/ProjectPhotos/ccivolunteer.jpg',
       },
       {
          date: 'July 2024',
@@ -43,7 +43,7 @@ export function JourneySection() {
             'Worked with youth programs to organize events and manage learning program for youths. Collaborated with partners to run literacy program. Coordinated tasks with theam and reported to manager.',
          startDate: 'July 2024',
          endDate: 'Jan 2026',
-         logo: './src/ProjectPhotos/ccilogo.jpg',
+         logo: '/ProjectPhotos/ccilogo.jpg',
          teamPhoto: '',
       },
       {
@@ -53,7 +53,7 @@ export function JourneySection() {
             'Enrolled in Bachelor of Applied Science in Software Engineering program at University of Ottawa, focusing on learning coding, algorithms, software engineering principles, and artificial intelligence.',
          startDate: 'September 2024',
          endDate: 'Present',
-         logo: './src/ProjectPhotos/uottawalogo.png',
+         logo: '/ProjectPhotos/uottawalogo.png',
          teamPhoto: '',
       },
       {
@@ -63,7 +63,7 @@ export function JourneySection() {
             'Contributed in developing tools and products for Faculty of Health Sciences at University of Ottawa in a four month Co-op term. Developed coding best practices and learnt collaboration in real-world projects.',
          startDate: 'Jan 2026',
          endDate: 'Present',
-         logo: './src/ProjectPhotos/uottawalogo.png',
+         logo: '/ProjectPhotos/uottawalogo.png',
          teamPhoto: '',
       },
    ];
@@ -185,7 +185,13 @@ export function JourneySection() {
                      onClick={(e) => e.stopPropagation()}
                      className="bg-[#1A1A1A] rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden border border-[#C9A24D]/30"
                   >
-                     <div>
+                     <div className="relative">
+                        {/*Team image added*/}
+                        <img
+                           src={selectedItem.teamPhoto}
+                           alt="Team"
+                           className="w-full h-48 sm:h-64 object-cover"
+                        />
                         {/* Close 'X' Button top-right */}
                         <button
                            onClick={() => setSelectedItem(null)}
@@ -197,39 +203,47 @@ export function JourneySection() {
 
                      {/*journey container text info*/}
                      <div className="p-6 sm:p-8">
-                        <div className="flex-1">
-                           <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-[#D1D1D1]">
-                              {selectedItem.title}
-                           </h3>
-                           <div className="flex items-center gap-4 text-[#D1D1D1]/70">
-                              <div className="flex items-center gap-2">
-                                 <Calendar className="w-4 h-4 text-[#C9A24D]" />
-                                 <span className="text-xs sm:text-sm">
-                                    {selectedItem.startDate} -{' '}
-                                    {selectedItem.endDate}
-                                 </span>
+                        {/*img section added to render logo*/}
+                        <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 mb-6">
+                           <img
+                              src={selectedItem.logo}
+                              alt="Logo"
+                              className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover shadow-md border border-[#C9A24D]/30"
+                           />
+                           <div className="flex-1">
+                              <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-[#D1D1D1]">
+                                 {selectedItem.title}
+                              </h3>
+                              <div className="flex items-center gap-4 text-[#D1D1D1]/70">
+                                 <div className="flex items-center gap-2">
+                                    <Calendar className="w-4 h-4 text-[#C9A24D]" />
+                                    <span className="text-xs sm:text-sm">
+                                       {selectedItem.startDate} -{' '}
+                                       {selectedItem.endDate}
+                                    </span>
+                                 </div>
                               </div>
                            </div>
-                        </div>
 
-                        {/* Description Section */}
-                        <div className="space-y-4">
-                           <div>
-                              <h4 className="font-bold text-lg mb-2 flex items-center gap-2 text-[#D1D1D1]">
-                                 <Users className="w-5 h-5 text-[#C9A24D]" />
-                                 Experience Description
-                              </h4>
-                              <p className="text-[#D1D1D1]/80 leading-relaxed text-sm sm:text-base">
-                                 {selectedItem.description}
-                              </p>
-                           </div>
-                           {/* Footer / Hardcoded Reflection */}
-                           <div className="pt-4 border-t border-[#C9A24D]/30">
-                              <p className="text-sm text-[#D1D1D1]/60">
-                                 This experience has been instrumental in
-                                 developing my skills and understanding of the
-                                 tech industry.
-                              </p>
+                           {/* Description Section */}
+                           <div className="space-y-4">
+                              <div>
+                                 <h4 className="font-bold text-lg mb-2 flex items-center gap-2 text-[#D1D1D1]">
+                                    <Users className="w-5 h-5 text-[#C9A24D]" />
+                                    Experience Description
+                                 </h4>
+                                 <p className="text-[#D1D1D1]/80 leading-relaxed text-sm sm:text-base">
+                                    {selectedItem.description}
+                                 </p>
+                              </div>
+                              {/* Footer / Hardcoded Reflection */}
+                              <div className="pt-4 border-t border-[#C9A24D]/30">
+                                 <p className="text-sm text-[#D1D1D1]/60">
+                                    This experience has been instrumental in
+                                    developing my skills and understanding of
+                                    the tech industry.
+                                 </p>
+                              </div>
                            </div>
                         </div>
                      </div>
