@@ -23,8 +23,8 @@ export function JourneySection() {
             'Started my journey in Canada, learning the way of life and getting used to things around me. Get to my new home and started everything from scratch.',
          startDate: 'December 2023',
          endDate: 'Present',
-         logo: '',
-         teamPhoto: '',
+         logo: '/ProjectPhotos/canadaflag.jpg',
+         teamPhoto: '/ProjectPhotos/ottawapic.jpg',
       },
       {
          date: 'March 2024',
@@ -44,7 +44,7 @@ export function JourneySection() {
          startDate: 'July 2024',
          endDate: 'Jan 2026',
          logo: '/ProjectPhotos/ccilogo.jpg',
-         teamPhoto: '',
+         teamPhoto: '/ProjectPhotos/ccivolunteer.jpg',
       },
       {
          date: 'Sep 2024',
@@ -54,7 +54,7 @@ export function JourneySection() {
          startDate: 'September 2024',
          endDate: 'Present',
          logo: '/ProjectPhotos/uottawalogo.png',
-         teamPhoto: '',
+         teamPhoto: '/ProjectPhotos/uottawared.png',
       },
       {
          date: 'Jan 2026',
@@ -64,7 +64,7 @@ export function JourneySection() {
          startDate: 'Jan 2026',
          endDate: 'Present',
          logo: '/ProjectPhotos/uottawalogo.png',
-         teamPhoto: '',
+         teamPhoto: '/ProjectPhotos/uottawared.png',
       },
    ];
    return (
