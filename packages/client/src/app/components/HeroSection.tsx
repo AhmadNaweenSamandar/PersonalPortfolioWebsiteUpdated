@@ -57,6 +57,7 @@ export function HeroSection() {
 
          {/* Airplane Path Animation */}
          {/* {this has not been consistent with its correct appearence, potentially need a look back} */}
+         {/*
          {!showButtons && (
             <motion.div
                className="absolute hidden lg:block"
@@ -82,7 +83,7 @@ export function HeroSection() {
                         ease: 'easeInOut',
                      }}
                   />
-                  {/* Animated dot following the path */}
+                  {/* Animated dot following the path
                   <motion.circle
                      r="3"
                      fill="#C9A24D"
@@ -103,6 +104,7 @@ export function HeroSection() {
                </svg>
             </motion.div>
          )}
+         */}
 
          <div className="text-center z-10 px-4 sm:px-6">
             <motion.div
@@ -191,7 +193,7 @@ export function HeroSection() {
                      </motion.a>
 
                      <motion.a
-                        href="/resume.pdf"
+                        href="/ProjectPhotos/Resume.pdf"
                         download
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}

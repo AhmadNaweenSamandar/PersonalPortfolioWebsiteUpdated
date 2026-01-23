@@ -180,7 +180,7 @@ export function AskGabinaSection() {
                         }
                         transition={{ duration: 1.5 }}
                      >
-                        Ahmad Naween Samandar
+                        Ahmad
                      </motion.span>{' '}
                      is a perfect match for your team!
                   </p>

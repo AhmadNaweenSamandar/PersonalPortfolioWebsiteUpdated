@@ -17,9 +17,21 @@ export function ProjectsSection() {
    const [projects, setProjects] = useState<Project[]>([
       {
          id: 1,
+         title: 'Gabina - Personal AI Assistant',
+         description: 'Personal Website integerated with chatbot named Gabina.',
+         image: '/ProjectPhotos/gabina.jpg',
+         tools: ['React', 'Node.js', 'GeminiAPI'],
+         demoLink: 'https://github.com/AhmadNaweenSamandar/Spotify',
+         githubLink:
+            'https://github.com/AhmadNaweenSamandar/PersonalPortfolioWebsiteUpdated',
+         detailedDescription:
+            'The website includes various section about my background. Gabina is connected with Gemini API and answer any question related to experience and skills. User can access project details, and visit live demo',
+      },
+      {
+         id: 2,
          title: 'Pingly',
          description: 'Social-Work study platform for uOttawa students.',
-         image: './src/ProjectPhotos/pingly.jpg',
+         image: '/ProjectPhotos/pingly.JPG',
          tools: ['React', 'Node.js', 'Express'],
          demoLink: 'https://mypingly.netlify.app/',
          githubLink: 'https://github.com/AhmadNaweenSamandar/Pingly',
@@ -28,10 +40,10 @@ export function ProjectsSection() {
       },
 
       {
-         id: 2,
+         id: 3,
          title: 'AlgoFinance',
          description: 'Personal Financial Insight Generator',
-         image: './src/ProjectPhotos/pingly.jpg',
+         image: '/ProjectPhotos/algofinancelogo.jpg',
          tools: ['React', 'Node.js', 'SQL'],
          demoLink: 'https://github.com/AhmadNaweenSamandar/AlgoFinance',
          githubLink: 'https://github.com/AhmadNaweenSamandar/AlgoFinance',
@@ -40,10 +52,10 @@ export function ProjectsSection() {
       },
 
       {
-         id: 3,
+         id: 4,
          title: 'Spotify',
          description: 'A simple Spotify clone build for practice.',
-         image: './src/ProjectPhotos/pingly.jpg',
+         image: '/ProjectPhotos/spotify.png',
          tools: ['HTML', 'CSS', 'JavaScript'],
          demoLink: 'https://github.com/AhmadNaweenSamandar/Spotify',
          githubLink: 'https://github.com/AhmadNaweenSamandar/Spotify',
@@ -109,7 +121,13 @@ export function ProjectsSection() {
                                  zIndex: 3 - idx,
                               }}
                               className="w-64 h-80 bg-[#0F0F0F] rounded-2xl border border-[#C9A24D]/30 shadow-xl"
-                           ></motion.div>
+                           >
+                              <img
+                                 src={project.image}
+                                 alt={project.title}
+                                 className="w-full h-48 object-cover rounded-t-2xl"
+                              />
+                           </motion.div>
                         );
                      })}
                   </div>
@@ -128,6 +146,13 @@ export function ProjectsSection() {
                         {!flipped ? (
                            //project card front
                            <div>
+                              <div className="relative h-56 sm:h-64">
+                                 <img
+                                    src={currentProject.image}
+                                    alt={currentProject.title}
+                                    className="w-full h-full object-cover"
+                                 />
+                              </div>
                               <div className="p-6">
                                  <div className="flex flex-wrap gap-2 mb-4">
                                     {currentProject.tools.map((tool) => (
