@@ -33,14 +33,30 @@ export function EventsSection() {
          photos: [
             {
                id: 1,
-               url: '/ProjectPhotos/teamlaunch.jpg',
-               caption: 'Opening Ceremony',
+               url: '/ProjectPhotos/teamintro1.JPG',
+               caption: 'Presentation',
             },
-            { id: 2, url: '', caption: 'Speaker' },
-            { id: 3, url: '', caption: 'Presentation' },
-            { id: 4, url: '', caption: 'Team introduction' },
-            { id: 5, url: '', caption: 'Networking' },
-            { id: 6, url: '', caption: 'Snacks' },
+            {
+               id: 2,
+               url: '/ProjectPhotos/teamintro2.JPG',
+               caption: 'Team announcement',
+            },
+            {
+               id: 3,
+               url: '/ProjectPhotos/teamintro3.jpg',
+               caption: 'Speech',
+            },
+            // {
+            //    id: 4,
+            //    url: '/ProjectPhotos/teamintro4.jpg',
+            //    caption: 'Team introduction',
+            // },
+            {
+               id: 5,
+               url: '/ProjectPhotos/teamintro5.jpg',
+               caption: 'Group Photo',
+            },
+            { id: 6, url: '/ProjectPhotos/teamintro6.jpg', caption: 'Wrapup' },
          ],
       },
 
@@ -52,12 +68,28 @@ export function EventsSection() {
          description:
             'Hands on workshop about Large-Language-Models, how to use ChatGPT and Gemini along side learning opportunities in AI discussed.',
          photos: [
-            { id: 1, url: '', caption: 'Team Working' },
-            { id: 2, url: '', caption: 'Presentation' },
-            { id: 3, url: '', caption: 'Team picture' },
-            { id: 4, url: '', caption: 'Networking' },
-            { id: 5, url: '', caption: '' },
-            { id: 6, url: '', caption: '' },
+            {
+               id: 1,
+               url: '/ProjectPhotos/aiworkshop1.jpg',
+               caption: 'Intro',
+            },
+            {
+               id: 2,
+               url: '/ProjectPhotos/aiworkshop2.jpg',
+               caption: 'Presentation',
+            },
+            {
+               id: 3,
+               url: '/ProjectPhotos/aiworkshop3.jpg',
+               caption: 'Team Picture',
+            },
+            {
+               id: 4,
+               url: '/ProjectPhotos/aiworkshop4.jpg',
+               caption: 'Group Picture',
+            },
+            // { id: 5, url: '', caption: '' },
+            // { id: 6, url: '', caption: '' },
          ],
       },
    ];
@@ -97,6 +129,12 @@ export function EventsSection() {
                      className="group relative bg-[#0F0F0F] rounded-3xl overflow-hidden shadow-xl hover:shadow-md hover:shadow-[#C9A24D]/15 transition-all cursor-pointer border border-[#C9A24D]/30"
                   >
                      <div className="relative h-64 sm:h-80 lg:h-96">
+                        {/*Event poster*/}
+                        <img
+                           src={event.image}
+                           alt={event.title}
+                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                         {/* GRADIENT OVERLAY: Ensures text readability by darkening the bottom of the image */}
 
                         {/* Event info */}
@@ -108,12 +146,12 @@ export function EventsSection() {
                                  {event.date}
                               </span>
                            </div>
-                           <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-[#D1D1D1]">
+                           {/* <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-[#000000]">
                               {event.title}
-                           </h3>
-                           <p className="text-[#D1D1D1]/80 text-sm sm:text-base">
+                           </h3> */}
+                           {/* <p className="text-[#D1D1D1]/80 text-sm sm:text-base">
                               {event.description}
-                           </p>
+                           </p> */}
                         </div>
                      </div>
 
@@ -186,6 +224,12 @@ export function EventsSection() {
                                  onClick={() => setSelectedPhoto(photo)}
                                  className="relative aspect-square rounded-xl overflow-hidden cursor-pointer group border border-[#C9A24D]/30 hover:border-[#C9A24D] transition-all"
                               >
+                                 {/*Gallery photo*/}
+                                 <img
+                                    src={photo.url}
+                                    alt={photo.caption}
+                                    className="w-full h-full object-cover"
+                                 />
                                  {/* PHOTO CAPTION OVERLAY: Appears on hover */}
                                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-end p-3">
                                     <p className="text-white text-xs sm:text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
@@ -231,6 +275,12 @@ export function EventsSection() {
                      >
                         <X className="w-6 h-6 text-[#0F0F0F]" />
                      </button>
+                     {/*individual image preview*/}
+                     <img
+                        src={selectedPhoto.url}
+                        alt={selectedPhoto.caption}
+                        className="max-w-full max-h-[85vh] rounded-2xl shadow-2xl border border-[#C9A24D]/50"
+                     />
 
                      {/* CAPTION BAR */}
                      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent rounded-b-2xl">
