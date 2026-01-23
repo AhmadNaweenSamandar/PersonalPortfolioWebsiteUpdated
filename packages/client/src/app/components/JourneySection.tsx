@@ -20,7 +20,7 @@ export function JourneySection() {
          date: 'Dec 2023',
          title: 'Newcomer to Canada',
          description:
-            'Started my journey in Canada, learning the way of life and getting used to things around me. Get to my new home and started everything from scratch.',
+            'I began my journey in Canada by learning a new way of life and adapting to my surroundings. Arriving in a new home, I started everything from scratch with determination and resilience.',
          startDate: 'December 2023',
          endDate: 'Present',
          logo: '/ProjectPhotos/canadaflag.jpg',
@@ -30,7 +30,7 @@ export function JourneySection() {
          date: 'March 2024',
          title: 'Volunteer',
          description:
-            'Joined Catholic Centre for Immigrants (CCI) as social work volunteer. Gain valuable experience in work ethics of Canada. Organized many events for newcomers and community members.',
+            'Joined the Catholic Centre for Immigrants (CCI) as a Social Work Volunteer, gaining valuable experience in Canadian workplace ethics. Actively organized and supported multiple events for community members.',
          startDate: 'March 2024',
          endDate: 'June 2024',
          logo: '/ProjectPhotos/ccilogo.jpg',
@@ -40,7 +40,7 @@ export function JourneySection() {
          date: 'July 2024',
          title: 'Part-time Youth Worker',
          description:
-            'Worked with youth programs to organize events and manage learning program for youths. Collaborated with partners to run literacy program. Coordinated tasks with theam and reported to manager.',
+            'Worked with youth program to organize events and support learning programs for youth. Collaborated with partner organizations to deliver literacy programs. Coordinated tasks with the team and regularly reported progress to the manager.',
          startDate: 'July 2024',
          endDate: 'Jan 2026',
          logo: '/ProjectPhotos/ccilogo.jpg',
@@ -50,7 +50,7 @@ export function JourneySection() {
          date: 'Sep 2024',
          title: 'Admitted to University of Ottawa',
          description:
-            'Enrolled in Bachelor of Applied Science in Software Engineering program at University of Ottawa, focusing on learning coding, algorithms, software engineering principles, and artificial intelligence.',
+            'Enrolled in Bachelor of Applied Science in Software Engineering program at University of Ottawa, focused on learning coding, algorithms, software engineering principles, and artificial intelligence.',
          startDate: 'September 2024',
          endDate: 'Present',
          logo: '/ProjectPhotos/uottawalogo.png',
