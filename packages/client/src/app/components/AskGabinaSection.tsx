@@ -80,7 +80,14 @@ export function AskGabinaSection() {
 
       try {
          // 2. SEND REQUEST TO YOUR CONTROLLER
-         const response = await fetch('http://localhost:5000/api/chat', {
+         // Vite uses import.meta.env to read variables
+         // If the variable is missing, fallback to localhost for safety
+         //so local host is put in API_URL variable
+         const API_URL =
+            import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+         //This API_URL variable is called along side api/chat
+         //if api/chat which is backend of the chat connection with Gemini doesn't response it will refer to localhost of it
+         const response = await fetch(`${API_URL}/api/chat`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

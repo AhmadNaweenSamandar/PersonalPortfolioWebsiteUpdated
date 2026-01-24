@@ -1,5 +1,5 @@
 // src/services/chat.service.ts
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, HarmCategory, HarmBlockThreshold } from "@google/genai";
 import { ChatRepository } from "../repositories/chat.repository.js";
 import dotenv from 'dotenv';
 import { RESUME_DATA } from "../constants/portfolioData.js";
@@ -33,8 +33,28 @@ export class ChatService {
     // 3. Call Gemini API
     const response = await this.ai.models.generateContent({
       model: "gemini-3-flash-preview",
+      // ADD THIS BLOCK:
+      
       // 1. AI Persona and Knowledge about Ahmad
       config: {
+        safetySettings: [
+      {
+      category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+      threshold: HarmBlockThreshold.BLOCK_NONE,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+      threshold: HarmBlockThreshold.BLOCK_NONE,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+      threshold: HarmBlockThreshold.BLOCK_NONE,
+    },
+    {
+      category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+      threshold: HarmBlockThreshold.BLOCK_NONE,
+    },
+    ],
         systemInstruction: {
             parts: [{ text: RESUME_DATA }]
         }
