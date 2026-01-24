@@ -12,8 +12,9 @@ const app = express();
 
 // 1. CORS Allow Frontend Connection
 app.use(cors({
-  origin: ["http://localhost:5173",
-            "https://personalportfoliowebsite-frontend.onrender.com"
+  origin: [
+   "http://localhost:5173",
+   "https://personalportfoliowebsite-frontend.onrender.com"
   ],
   // front end server link
   methods: ["POST", "GET"],
