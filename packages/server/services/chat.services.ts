@@ -38,7 +38,7 @@ export class ChatService {
       // 1. AI Persona and Knowledge about Ahmad
       config: {
         safetySettings: [
-    {
+      {
       category: HarmCategory.HARM_CATEGORY_HARASSMENT,
       threshold: HarmBlockThreshold.BLOCK_NONE,
     },
@@ -54,8 +54,7 @@ export class ChatService {
       category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
       threshold: HarmBlockThreshold.BLOCK_NONE,
     },
-  
-  ],
+    ],
         systemInstruction: {
             parts: [{ text: RESUME_DATA }]
         }
