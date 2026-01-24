@@ -14,7 +14,9 @@ const app = express();
 app.use(cors({
   origin: [
    "http://localhost:5173",
-   "https://personalportfoliowebsite-frontend.onrender.com"
+   "https://personalportfoliowebsite-frontend.onrender.com",
+   "https://www.iamnaween.com", //Custom Domain Added for backend and frontend communication
+    "https://iamnaween.com"
   ],
   // front end server link
   methods: ["POST", "GET"],
