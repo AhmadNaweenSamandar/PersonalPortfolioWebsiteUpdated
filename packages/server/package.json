@@ -9,7 +9,7 @@
    "scripts": {
       "start": "node dist/index.js",
       "build": "tsc",
-      "dev": "nodemon index.ts"
+      "dev": "nodemon --exec tsx index.ts"
    },
    "dependencies": {
       "@google/genai": "^1.38.0",

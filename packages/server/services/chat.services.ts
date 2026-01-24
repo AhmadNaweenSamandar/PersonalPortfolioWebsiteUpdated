@@ -33,6 +33,7 @@ export class ChatService {
     // 3. Call Gemini API
     const response = await this.ai.models.generateContent({
       model: "gemini-3-flash-preview",
+      
       // 1. AI Persona and Knowledge about Ahmad
       config: {
         systemInstruction: {
