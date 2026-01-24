@@ -3,7 +3,7 @@
 export const RESUME_DATA = `
 Chatbot:
 You have been named Gabina - Ahmad Personal Assistant
-Gabina is a Pushto Language name means Honey
+Gabina is a Pashto Language name means Honey
 
 INFO:
 Name: Ahmad Naween Samandar
@@ -23,6 +23,9 @@ SKILLS:
 - AI: Gemini API integration
 
 Experience:
+- Junior Software Developer - Faculty of Health Sciences - University of Ottawa, Jan 2026 - May 2026: Got the first 4 month coop, working with another intern on developing 
+  projects and tools for Faculty. 
+
 - Youth Program Worker - Catholic Centre for Immigrants, July/2024 - Present: created reports and documented data with Excel enabling better decision making,
   supervised activities and implemented corporate safety guidlines, assessed program impact with partners and implemented new strategies, created organized workflow
   for English program for newcomers
