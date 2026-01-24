@@ -63,6 +63,20 @@ export function AskGabinaSection() {
 
       setConversationId(storedId);
    }, []);
+   //Bug: when user close the chatbot, scroll other part and reopen the chat, It regenerates the last message
+   //useEffect to control the regeneration of last message in the chat after reopening by user
+   //When the Chat opens (mounts), force all messages to be "read"
+   useEffect(() => {
+      if (isOpen) {
+         // Only run if the chat is actually visible
+         setMessages((prevMessages) =>
+            prevMessages.map((msg) => ({
+               ...msg,
+               alreadyAnimated: true, // Force all text to appear instantly
+            }))
+         );
+      }
+   }, [isOpen]); // <--- Dependency: Run this every time 'isOpen' changes
 
    const handleSend = async () => {
       if (!input.trim() || isLoading) return;
@@ -79,7 +93,7 @@ export function AskGabinaSection() {
       ]);
 
       try {
-         // 2. SEND REQUEST TO YOUR CONTROLLER
+         // 2. SEND REQUEST TO CONTROLLER
          // Vite uses import.meta.env to read variables
          // If the variable is missing, fallback to localhost for safety
          //so local host is put in API_URL variable
